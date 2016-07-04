@@ -1,0 +1,1543 @@
+Interrupt Vectors
+    00000 940C 04F0 JMP	__start|__text_start
+    00024 940C 055B JMP	_UART0_Receive_Byte
+
+Program Code (text area)
+__start|__text_start:
+    004F0 EFCF      LDI	R28,0xFF
+    004F1 E1D0      LDI	R29,0x10
+    004F2 BFCD      OUT	0x3D,R28
+    004F3 BFDE      OUT	0x3E,R29
+    004F4 51CE      SUBI	R28,0x1E
+    004F5 40D0      SBCI	R29,0
+    004F6 EA0A      LDI	R16,0xAA
+    004F7 8308      ST	Y,R16
+    004F8 2400      CLR	R0
+    004F9 E4EC      LDI	R30,0x4C
+    004FA E0FA      LDI	R31,0xA
+    004FB E01A      LDI	R17,0xA
+    004FC 34ED      CPI	R30,0x4D
+    004FD 07F1      CPC	R31,R17
+    004FE F011      BEQ	0x0501
+    004FF 9201      ST	Z+,R0
+    00500 CFFB      RJMP	0x04FC
+    00501 8300      ST	Z,R16
+    00502 E9E4      LDI	R30,0x94
+    00503 E0F0      LDI	R31,0
+    00504 E0A0      LDI	R26,0
+    00505 E0B1      LDI	R27,1
+    00506 E019      LDI	R17,0x9
+    00507 E000      LDI	R16,0
+    00508 BF0B      OUT	0x3B,R16
+    00509 3EE0      CPI	R30,0xE0
+    0050A 07F1      CPC	R31,R17
+    0050B F021      BEQ	0x0510
+    0050C 95C8      LPM
+    0050D 9631      ADIW	R30,1
+    0050E 920D      ST	X+,R0
+    0050F CFF9      RJMP	0x0509
+    00510 940E 06DA CALL	_main
+_exit:
+    00512 CFFF      RJMP	_exit
+_delay:
+  i                    --> R20
+  j                    --> R22
+  ms                   --> R16
+    00513 940E 07B9 CALL	push_xgsetF000
+FILE: K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+(0001) /*
+(0002) 
+(0003) ----------【硬件配置说明】↓--------------------------------------------------
+(0004) //UART0:[MCU - SPEAKING MODULE]BAUD 9600, DC 5V，RXD0-PE0, TXD0-PE1
+(0005) //UART1:[MCU - MOTOR BOARD] BAUD 9600, DC 5V, RXD1-PD2, TXD1-PD3
+(0006) 
+(0007) 
+(0008) ----------【单片机管脚连接说明说明】↓--------------------------------------------------
+(0009) 语音模块(UART0)：TXD-E0(MCU.RXD0)
+(0010) 舵机控制板(UART1):RXD-D3(MCU.TXD1)
+(0011) 继电器模块:IN1-A1→电磁换向阀, IN2-A2→电气比例阀
+(0012) */
+(0013) 
+(0014) //----------【头文件】↓--------------------------------------------------------
+(0015) #include <iom128v.h>
+(0016) #include <macros.h>
+(0017) #include <string.h>
+(0018) 
+(0019) //----------【宏定义】↓--------------------------------------------------------
+(0020) #define  uchar unsigned char
+(0021) #define  uint  unsigned int
+(0022) #define  mclk   8000000 //时钟频率8.0MHz
+(0023) 
+(0024) 
+(0025) //----------【全局变量定义】↓--------------------------------------------------
+(0026) uchar uart0_received_byte;//UART0每次接收到的单字节信息
+(0027) uchar uart0_received_flag=0;
+(0028) 
+(0029) uchar Note_end=0X0D;//0X0d means <cr> 
+(0030) uchar Note_test1[]="#0 P750 T100";
+(0031) uchar Note_test2[]="#0 P1450 T100";
+(0032) uchar Note_test3[]={0X23, 0X30, 0X20, 0X50, 0X31, 0X30, 0X30, 0X30, 0X20, 0X54, 0X31, 0X30, 0X30, 0X0d};
+(0033) uchar Note_test4[]={0X23, 0X30, 0X20, 0X50, 0X32, 0X30, 0X30, 0X30, 0X20, 0X54, 0X31, 0X30, 0X30, 0X0d};
+(0034) 
+(0035) //---------------------------【乐曲保存区域】↓---------------------------------
+(0036) 
+(0037) //康定情歌
+(0038) float KangDingQingGe[100][2]={
+(0039) {3,0.5},{5,0.5},{6,0.5},{6,0.25},{5,0.5},{6,0.5},{3,0.5},{2,1},
+(0040) {3,0.5},{5,0.5},{6,0.5},{6,0.25},{5,0.25},{6,0.5},{3,0.5},{3,1},
+(0041) {3,0.5},{5,0.5},{6,0.5},{6,0.25},{5,0.25},{6,0.5},{3,0.5},{2,1},
+(0042) {5,0.5},{3,0.5},{2,0.25},{3,0.25},{2,0.25},{1,0.25},{2,0.5},{26,0.5},{26,1},
+(0043) {26,0.5},{2,0.5},{2,1},{5,0.5},{3,0.5},{3,1},{2,0.25},{1,0.25},{26,0.5},{26,1},
+(0044) {5,0.5},{3,0.5},{2,0.25},{3,0.25},{2,0.25},{1,0.25},{2,0.5},{26,0.5},{26,1},
+(0045) {5,0.5},{3,0.5},{2,0.25},{3,0.25},{2,0.25},{1,0.25},{2,0.5},{6,0.5},{6,1},
+(0046) {30,30}};
+(0047) 
+(0048) //月光下的凤尾竹
+(0049) float YueGuangXiaDeFengWeiZhu[100][2]={
+(0050) {1,0.5},{26,0.5},{26,0.5},{1,0.5},{1,1},
+(0051) {1,0.5},{2,0.5},{2,0.5},{3,0.5},{3,1},
+(0052) {3,0.5},{2,0.5},{2,0.5},{1,0.5},{1,0.5},{26,0.5},
+(0053) {1,2},{2,0.5},{1,0.5},{26,2},
+(0054) {1,0.5},{1,0.5},{2,0.5},{3,0.5},{3,1},
+(0055) {3,0.5},{1,0.5},{2,0.5},{3,0.5},{3,1},
+(0056) {5,0.5},{1,0.5},{2,0.5},{3,0.5},{3,0.5},{3,0.5},
+(0057) {3,0.5},{26,0.5},{1,0.5},{2,0.5},{2,1},
+(0058) {3,1},{26,1},
+(0059) {1,0.5},{1,0.5},{2,0.5},{3,0.5},{3,0.75},{3,0.25},
+(0060) {5,0.5},{1,0.5},{2,0.5},{3,0.5},{3,1},
+(0061) {5,0.5},{3,0.5},{5,0.5},{6,0.5},{6,0.75},{6,0.25},
+(0062) {5,1},{1,0.5},{3,0.5},{2,0.5},{1,0.5},{1,3},
+(0063) {30,30}};
+(0064) 
+(0065) 
+(0066) //傣族民歌
+(0067) /*
+(0068) float DaiZuMinGe[100][2]={
+(0069) {1,0.5},{2,0.5},{5,1},{3,2},{3,1.5},{5,0.5},{5,1},{3,0.5},{5,0.5},
+(0070) {1,1},{1,0.5},{2,0.5},{1,0.5},{26,0.5},{1,0.5},{2,0.5},{1,1},{3,0.5},{5,0.5},{1,0.5},{2,0.5},{3,0.5},{5,0.5},
+(0071) {,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},
+(0072) }*/
+(0073) //太阳
+(0074) 
+(0075) 
+(0076) 
+(0077) //---------------------------【音符指法指令保存区域】↓---------------------------------
+(0078) //从低音5到中音6
+(0079) char N25[]="#4 P1554 #8 P1384 #12 P1900 #16 P1213 #20 P1508 #24 P1415 #28 P1630 T100";//72字符
+(0080) char N26[]="#4 P1089 #8 P1384 #12 P1900 #16 P1213 #20 P1508 #24 P1415 #28 P1630 T100";//72字符
+(0081) char N27[]="#4 P1089 #8 P857 #12 P1900 #16 P1213 #20 P1508 #24 P1415 #28 P1630 T100";//71字符
+(0082)  char N1[]="#4 P1089 #8 P857 #12 P1523 #16 P1213 #20 P1508 #24 P1415 #28 P1630 T100";//71字符
+(0083)  char N2[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1508 #24 P1415 #28 P1630 T100";//70字符
+(0084)  char N3[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1058 #24 P1415 #28 P1630 T100";//70字符
+(0085)  char N4[]="#4 P1554 #8 P1384 #12 P1900 #16 P1213 #20 P1508 #24 P1116 #28 P1630 T100";//72字符
+(0086)  char N5[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1058 #24 P996 #28 P1630 T100";//69字符
+(0087)  char N6[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1058 #24 P996 #28 P1833 T100";//69字符
+(0088) //演奏结束后抬起手指
+(0089) char All_Rise[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1058 #24 P996 #28 P1833 T100";//69字符=N6[]
+(0090) 
+(0091) 
+(0092) //--------------【软件延时函数】------------------------------------------------
+(0093) 
+(0094) //延时函数，参数为要延时的毫秒数
+(0095) void delay(uint ms)
+(0096) {
+(0097)     uint i,j;
+(0098) 	for(i=0;i<ms;i++)
+    00515 2744      CLR	R20
+    00516 2755      CLR	R21
+    00517 C00B      RJMP	0x0523
+(0099) 	{
+(0100) 	 for(j=0;j<2000;j++);
+    00518 2766      CLR	R22
+    00519 2777      CLR	R23
+    0051A C002      RJMP	0x051D
+    0051B 5F6F      SUBI	R22,0xFF
+    0051C 4F7F      SBCI	R23,0xFF
+    0051D 3D60      CPI	R22,0xD0
+    0051E E0E7      LDI	R30,7
+    0051F 077E      CPC	R23,R30
+    00520 F3D0      BCS	0x051B
+    00521 5F4F      SUBI	R20,0xFF
+    00522 4F5F      SBCI	R21,0xFF
+    00523 1740      CP	R20,R16
+    00524 0751      CPC	R21,R17
+    00525 F390      BCS	0x0518
+    00526 940C 07BE JMP	pop_xgsetF000
+(0101)     }
+(0102) }
+(0103) 
+(0104) 
+(0105) //----------【普通IO口相关函数】↓---------------------------------------------------------------
+(0106) 
+(0107) /*IO口初始化函数*/
+(0108) void I0_init(void)
+(0109) {
+(0110)     //PA1和PA2设置为输出
+(0111) 	DDRA|=BIT(1);
+_I0_init:
+    00528 9AD1      SBI	0x1A,1
+(0112) 	DDRA|=BIT(2);
+    00529 9AD2      SBI	0x1A,2
+(0113) 	//开始时为低电平
+(0114) 	PORTA&=(~BIT(1));
+    0052A 98D9      CBI	0x1B,1
+(0115) 	PORTA&=(~BIT(2));
+    0052B 98DA      CBI	0x1B,2
+    0052C 9508      RET
+_uart0_init:
+  baud                 --> R10
+    0052D 940E 07C3 CALL	push_xgsetF00C
+    0052F 0158      MOVW	R10,R16
+(0116) }
+(0117) 
+(0118) 
+(0119) //----------【UART0的相关函数】↓---------------------------------------------------------------
+(0120) 
+(0121) /*UART0的串口初始化函数*/
+(0122) void uart0_init(uint baud)
+(0123) {
+(0124)    UCSR0B=0x00; 
+    00530 2422      CLR	R2
+    00531 B82A      OUT	0x0A,R2
+(0125)    UCSR0A=0x00; 		   //控制寄存器清零
+    00532 B82B      OUT	0x0B,R2
+(0126)    UCSR0C=(0<<UPM00)|(3<<UCSZ00); //选择UCSRC，异步模式，禁止校验，1位停止位，8位数据位                       
+    00533 E086      LDI	R24,6
+    00534 9380 0095 STS	0x95,R24
+(0127)    
+(0128)    baud=mclk/16/baud-1;    //波特率最大为65K
+    00536 0115      MOVW	R2,R10
+    00537 2444      CLR	R4
+    00538 2455      CLR	R5
+    00539 E240      LDI	R20,0x20
+    0053A EA51      LDI	R21,0xA1
+    0053B E067      LDI	R22,7
+    0053C E070      LDI	R23,0
+    0053D 925A      ST	-Y,R5
+    0053E 924A      ST	-Y,R4
+    0053F 923A      ST	-Y,R3
+    00540 922A      ST	-Y,R2
+    00541 018A      MOVW	R16,R20
+    00542 019B      MOVW	R18,R22
+    00543 940E 072A CALL	div32s
+    00545 E041      LDI	R20,1
+    00546 E050      LDI	R21,0
+    00547 E060      LDI	R22,0
+    00548 E070      LDI	R23,0
+    00549 0118      MOVW	R2,R16
+    0054A 0129      MOVW	R4,R18
+    0054B 1A24      SUB	R2,R20
+    0054C 0A35      SBC	R3,R21
+    0054D 0A46      SBC	R4,R22
+    0054E 0A57      SBC	R5,R23
+    0054F 0151      MOVW	R10,R2
+(0129)    UBRR0L=baud; 					     	  
+    00550 B829      OUT	0x09,R2
+(0130)    UBRR0H=baud>>8; 		   //设置波特率
+    00551 2C23      MOV	R2,R3
+    00552 2433      CLR	R3
+    00553 9220 0090 STS	0x90,R2
+(0131) 
+(0132)    
+(0133)    UCSR0B|=(1<<RXEN0);
+    00555 9A54      SBI	0x0A,4
+(0134)    //UCSR0B|=(1<<TXEN0);   //UART0发送使能
+(0135)    UCSR0B|=BIT(RXCIE0);
+    00556 9A57      SBI	0x0A,7
+(0136)    SREG=BIT(7);	           //全局中断开放
+    00557 E880      LDI	R24,0x80
+    00558 BF8F      OUT	0x3F,R24
+    00559 940C 07CA JMP	pop_xgsetF00C
+_UART0_Receive_Byte:
+    0055B 922A      ST	-Y,R2
+    0055C 938A      ST	-Y,R24
+    0055D B62F      IN	R2,0x3F
+    0055E 922A      ST	-Y,R2
+(0137)    //DDRE|=BIT(1);	           //配置TX为输出（很重要）
+(0138) }
+(0139) 
+(0140) /*UART0的串口发送函数，每次发送一个字节（Byte）*//*
+(0141) void UART0_Send_Byte(uchar data)
+(0142) {
+(0143)    while(!(UCSR0A&(BIT(UDRE0))));//判断准备就绪否
+(0144)    UDR0=data;
+(0145)    while(!(UCSR0A&(BIT(TXC0))));//判断完成发送否
+(0146)    UCSR0A|=BIT(TXC0);//TXC0标志位手动清零，通过将TXC0置1实现
+(0147) }*/
+(0148) 
+(0149) /*UART0字符串发送函数*//*
+(0150) void UART0_Send_String(uchar *str_send,uchar str_num)//形参：待发送字符串
+(0151) {
+(0152) 	 uchar i=0;
+(0153) 	 while(i<str_num)
+(0154) 	 {
+(0155) 	   UART0_Send_Byte(*(str_send+i));
+(0156) 	   i+=1;
+(0157) 	 }
+(0158) }*/
+(0159) #pragma interrupt_handler UART0_Receive_Byte:19
+(0160) 
+(0161) /*UART0的串口接收函数，每次接收一个字节（Byte）*/
+(0162) void UART0_Receive_Byte(void)
+(0163) {	
+(0164) 	UCSR0B&=~BIT(RXCIE0);//关闭RXCIE0，其余位保持不变
+    0055F 9857      CBI	0x0A,7
+(0165) 	uart0_received_byte=UDR0;
+    00560 B02C      IN	R2,0x0C
+    00561 9220 0A4C STS	uart0_received_byte,R2
+(0166) 	uart0_received_flag=1;
+    00563 E081      LDI	R24,1
+    00564 9380 0100 STS	uart0_received_flag,R24
+    00566 9029      LD	R2,Y+
+    00567 BE2F      OUT	0x3F,R2
+    00568 9189      LD	R24,Y+
+    00569 9029      LD	R2,Y+
+    0056A 9518      RETI
+_uart1_init:
+  baud                 --> R10
+    0056B 940E 07C3 CALL	push_xgsetF00C
+    0056D 0158      MOVW	R10,R16
+(0167) }
+(0168) 
+(0169) 
+(0170) //------------【UART1的相关函数】↓-------------------------------------------------------------
+(0171) 
+(0172) /*UART1的串口初始化函数*/
+(0173) void uart1_init(uint baud)
+(0174) {
+(0175)     UCSR1B=0x00; 
+    0056E 2422      CLR	R2
+    0056F 9220 009A STS	0x9A,R2
+(0176)     UCSR1A=0x00; 		   //控制寄存器清零
+    00571 9220 009B STS	0x9B,R2
+(0177)     UCSR1C=(0<<UPM10)|(3<<UCSZ10); //选择UCSRC，异步模式，禁止校验，1位停止位，8位数据位                       
+    00573 E086      LDI	R24,6
+    00574 9380 009D STS	0x9D,R24
+(0178)    
+(0179)     baud=mclk/16/baud-1;    //波特率最大为65K
+    00576 0115      MOVW	R2,R10
+    00577 2444      CLR	R4
+    00578 2455      CLR	R5
+    00579 E240      LDI	R20,0x20
+    0057A EA51      LDI	R21,0xA1
+    0057B E067      LDI	R22,7
+    0057C E070      LDI	R23,0
+    0057D 925A      ST	-Y,R5
+    0057E 924A      ST	-Y,R4
+    0057F 923A      ST	-Y,R3
+    00580 922A      ST	-Y,R2
+    00581 018A      MOVW	R16,R20
+    00582 019B      MOVW	R18,R22
+    00583 940E 072A CALL	div32s
+    00585 E041      LDI	R20,1
+    00586 E050      LDI	R21,0
+    00587 E060      LDI	R22,0
+    00588 E070      LDI	R23,0
+    00589 0118      MOVW	R2,R16
+    0058A 0129      MOVW	R4,R18
+    0058B 1A24      SUB	R2,R20
+    0058C 0A35      SBC	R3,R21
+    0058D 0A46      SBC	R4,R22
+    0058E 0A57      SBC	R5,R23
+    0058F 0151      MOVW	R10,R2
+(0180)     UBRR1L=baud; 					     	  
+    00590 92A0 0099 STS	0x99,R10
+(0181)     UBRR1H=baud>>8; 		   //设置波特率
+    00592 2C23      MOV	R2,R3
+    00593 2433      CLR	R3
+    00594 9220 0098 STS	0x98,R2
+(0182)    
+(0183)     UCSR1B|=(1<<TXEN1)|(1<<RXCIE1);   //接收、发送使能，接收中断使能 |(1<<RXEN1)
+    00596 9180 009A LDS	R24,0x9A
+    00598 6888      ORI	R24,0x88
+    00599 9380 009A STS	0x9A,R24
+(0184)     SREG=BIT(7);	           //全局中断开放
+    0059B E880      LDI	R24,0x80
+    0059C BF8F      OUT	0x3F,R24
+(0185)     DDRD|=BIT(3);	           //配置TX为输出（很重要）
+    0059D 9A8B      SBI	0x11,3
+    0059E 940C 07CA JMP	pop_xgsetF00C
+(0186) }
+(0187) 
+(0188) 
+(0189) /*UART1的串口发送函数，每次发送一个字节（Byte）*/
+(0190) void UART1_SendB(uchar data)
+(0191) {
+(0192)    while(!(UCSR1A&(BIT(UDRE1))));//判断准备就绪否
+_UART1_SendB:
+  data                 --> R16
+    005A0 9020 009B LDS	R2,0x9B
+    005A2 FE25      SBRS	R2,5
+    005A3 CFFC      RJMP	_UART1_SendB
+(0193)    UDR1=data;
+    005A4 9300 009C STS	0x9C,R16
+(0194)    while(!(UCSR1A&(BIT(TXC1))));//判断完成发送否
+    005A6 9020 009B LDS	R2,0x9B
+    005A8 FE26      SBRS	R2,6
+    005A9 CFFC      RJMP	0x05A6
+(0195)    UCSR1A|=BIT(TXC1);//TXC1标志位手动清零，通过将TXC1置1实现
+    005AA 9180 009B LDS	R24,0x9B
+    005AC 6480      ORI	R24,0x40
+    005AD 9380 009B STS	0x9B,R24
+    005AF 9508      RET
+_UART1_Send_String:
+  i                    --> R10
+  str_num              --> R14
+  str_send             --> R12
+    005B0 940E 07B2 CALL	push_xgset00FC
+    005B2 2EE2      MOV	R14,R18
+    005B3 0168      MOVW	R12,R16
+(0196) }
+(0197) 
+(0198) /*UART1字符串发送函数*/
+(0199) void UART1_Send_String(uchar *str_send,uchar str_num)//形参：待发送字符串
+(0200) {
+(0201) 	 uchar i=0;
+    005B4 24AA      CLR	R10
+    005B5 C00E      RJMP	0x05C4
+(0202) 	 while(i<str_num)
+(0203) 	 {
+(0204) 	     if(*(str_send+i)!=0)
+    005B6 2DEA      MOV	R30,R10
+    005B7 27FF      CLR	R31
+    005B8 0DEC      ADD	R30,R12
+    005B9 1DFD      ADC	R31,R13
+    005BA 8020      LD	R2,Z
+    005BB 2022      TST	R2
+    005BC F031      BEQ	0x05C3
+(0205) 	   	 {
+(0206) 	         UART1_SendB(*(str_send+i));
+    005BD 2DEA      MOV	R30,R10
+    005BE 27FF      CLR	R31
+    005BF 0DEC      ADD	R30,R12
+    005C0 1DFD      ADC	R31,R13
+    005C1 8100      LD	R16,Z
+    005C2 DFDD      RCALL	_UART1_SendB
+(0207) 	   	 }
+(0208) 	   
+(0209) 	   i+=1;
+    005C3 94A3      INC	R10
+    005C4 14AE      CP	R10,R14
+    005C5 F380      BCS	0x05B6
+    005C6 940C 07A7 JMP	pop_xgset00FC
+_Play_Music:
+  Time                 --> Y,+4
+  Note                 --> Y,+0
+  Note_Index           --> R10
+  Music                --> R12
+    005C8 940E 07B4 CALL	push_xgset003C
+    005CA 0168      MOVW	R12,R16
+    005CB 9728      SBIW	R28,0x8
+(0210) 	 }
+(0211) }
+(0212) 
+(0213) //---------------------------【乐曲演奏相关函数】↓-----------------------------------------------------------
+(0214) void Play_Music(float Music[100][2])
+(0215) {
+(0216) 	char Note_Index=0;//指向要演奏的音符
+    005CC 24AA      CLR	R10
+(0217) 	float Note;
+(0218) 	float Time;
+(0219) 	
+(0220) 	//电气比例阀打开
+(0221) 	
+(0222) 	//电磁换向阀打开
+(0223) 	Direction_Valve(1);
+    005CD E001      LDI	R16,1
+    005CE E010      LDI	R17,0
+    005CF D0F3      RCALL	_Direction_Valve
+(0224) 	delay(300);
+    005D0 E20C      LDI	R16,0x2C
+    005D1 E011      LDI	R17,1
+    005D2 DF40      RCALL	_delay
+    005D3 C036      RJMP	0x060A
+(0225) 	
+(0226) 	//播放乐曲
+(0227) 	while(Music[Note_Index][0]!=30)//30表示乐曲结束
+(0228) 	{
+(0229) 		Note=Music[Note_Index][0];
+    005D4 2DEA      MOV	R30,R10
+    005D5 27FF      CLR	R31
+    005D6 0FEE      LSL	R30
+    005D7 1FFF      ROL	R31
+    005D8 0FEE      LSL	R30
+    005D9 1FFF      ROL	R31
+    005DA 0FEE      LSL	R30
+    005DB 1FFF      ROL	R31
+    005DC 0DEC      ADD	R30,R12
+    005DD 1DFD      ADC	R31,R13
+    005DE 8020      LD	R2,Z
+    005DF 8031      LDD	R3,Z+1
+    005E0 8042      LDD	R4,Z+2
+    005E1 8053      LDD	R5,Z+3
+    005E2 8228      ST	Y,R2
+    005E3 8239      STD	Y+1,R3
+    005E4 824A      STD	Y+2,R4
+    005E5 825B      STD	Y+3,R5
+(0230) 		Time=Music[Note_Index][1]*660;
+    005E6 E900      LDI	R16,0x90
+    005E7 E010      LDI	R17,0
+    005E8 940E 078E CALL	elpm32
+    005EA 2D8A      MOV	R24,R10
+    005EB 2799      CLR	R25
+    005EC 0F88      LSL	R24
+    005ED 1F99      ROL	R25
+    005EE 0F88      LSL	R24
+    005EF 1F99      ROL	R25
+    005F0 0F88      LSL	R24
+    005F1 1F99      ROL	R25
+    005F2 0D8C      ADD	R24,R12
+    005F3 1D9D      ADC	R25,R13
+    005F4 9604      ADIW	R24,4
+    005F5 939A      ST	-Y,R25
+    005F6 938A      ST	-Y,R24
+    005F7 940E 0955 CALL	fpmule1
+    005F9 830C      STD	Y+4,R16
+    005FA 831D      STD	Y+5,R17
+    005FB 832E      STD	Y+6,R18
+    005FC 833F      STD	Y+7,R19
+(0231) 		Play_Note(Note);
+    005FD 8108      LD	R16,Y
+    005FE 8119      LDD	R17,Y+1
+    005FF 812A      LDD	R18,Y+2
+    00600 813B      LDD	R19,Y+3
+    00601 D031      RCALL	_Play_Note
+(0232) 		delay(Time);
+    00602 810C      LDD	R16,Y+4
+    00603 811D      LDD	R17,Y+5
+    00604 812E      LDD	R18,Y+6
+    00605 813F      LDD	R19,Y+7
+    00606 940E 0844 CALL	fpint
+    00608 DF0A      RCALL	_delay
+(0233) 		Note_Index++;
+    00609 94A3      INC	R10
+    0060A 2DEA      MOV	R30,R10
+    0060B 27FF      CLR	R31
+    0060C 0FEE      LSL	R30
+    0060D 1FFF      ROL	R31
+    0060E 0FEE      LSL	R30
+    0060F 1FFF      ROL	R31
+    00610 0FEE      LSL	R30
+    00611 1FFF      ROL	R31
+    00612 0DEC      ADD	R30,R12
+    00613 1DFD      ADC	R31,R13
+    00614 8020      LD	R2,Z
+    00615 8031      LDD	R3,Z+1
+    00616 8042      LDD	R4,Z+2
+    00617 8053      LDD	R5,Z+3
+    00618 E80C      LDI	R16,0x8C
+    00619 E010      LDI	R17,0
+    0061A 940E 078E CALL	elpm32
+    0061C 933A      ST	-Y,R19
+    0061D 932A      ST	-Y,R18
+    0061E 931A      ST	-Y,R17
+    0061F 930A      ST	-Y,R16
+    00620 0181      MOVW	R16,R2
+    00621 0192      MOVW	R18,R4
+    00622 940E 096C CALL	fpcmp2
+    00624 F009      BEQ	0x0626
+    00625 CFAE      RJMP	0x05D4
+(0234) 	}
+(0235) 	
+(0236) 	//电磁换向阀关闭
+(0237) 	Direction_Valve(0);
+    00626 2700      CLR	R16
+    00627 2711      CLR	R17
+    00628 D09A      RCALL	_Direction_Valve
+(0238) 	//电气比例阀关闭
+(0239) 	
+(0240) 	//所有手指抬起
+(0241) 	UART1_Send_String(All_Rise,69);
+    00629 E425      LDI	R18,0x45
+    0062A EF0E      LDI	R16,0xFE
+    0062B E019      LDI	R17,0x9
+    0062C DF83      RCALL	_UART1_Send_String
+(0242) 	UART1_SendB(Note_end);
+    0062D 9100 0101 LDS	R16,Note_end
+    0062F DF70      RCALL	_UART1_SendB
+    00630 9628      ADIW	R28,0x8
+    00631 940C 07A2 JMP	pop_xgset003C
+_Play_Note:
+  Note                 --> Y,+2
+    00633 940E 071F CALL	push_arg4
+    00635 934A      ST	-Y,R20
+    00636 935A      ST	-Y,R21
+(0243) }
+(0244) 
+(0245) void Play_Note(float Note)
+(0246) {
+(0247)     switch((char)Note)
+    00637 810A      LDD	R16,Y+2
+    00638 811B      LDD	R17,Y+3
+    00639 812C      LDD	R18,Y+4
+    0063A 813D      LDD	R19,Y+5
+    0063B 940E 0844 CALL	fpint
+    0063D 2F40      MOV	R20,R16
+    0063E 2755      CLR	R21
+    0063F 3041      CPI	R20,1
+    00640 E0E0      LDI	R30,0
+    00641 075E      CPC	R21,R30
+    00642 F409      BNE	0x0644
+    00643 C02E      RJMP	0x0672
+    00644 3042      CPI	R20,2
+    00645 E0E0      LDI	R30,0
+    00646 075E      CPC	R21,R30
+    00647 F409      BNE	0x0649
+    00648 C031      RJMP	0x067A
+    00649 3043      CPI	R20,3
+    0064A E0E0      LDI	R30,0
+    0064B 075E      CPC	R21,R30
+    0064C F409      BNE	0x064E
+    0064D C034      RJMP	0x0682
+    0064E 3044      CPI	R20,4
+    0064F E0E0      LDI	R30,0
+    00650 075E      CPC	R21,R30
+    00651 F409      BNE	0x0653
+    00652 C037      RJMP	0x068A
+    00653 3045      CPI	R20,5
+    00654 E0E0      LDI	R30,0
+    00655 075E      CPC	R21,R30
+    00656 F409      BNE	0x0658
+    00657 C03A      RJMP	0x0692
+    00658 3046      CPI	R20,6
+    00659 E0E0      LDI	R30,0
+    0065A 075E      CPC	R21,R30
+    0065B F409      BNE	0x065D
+    0065C C03D      RJMP	0x069A
+    0065D 3041      CPI	R20,1
+    0065E E0E0      LDI	R30,0
+    0065F 075E      CPC	R21,R30
+    00660 F40C      BGE	0x0662
+    00661 C057      RJMP	0x06B9
+    00662 3149      CPI	R20,0x19
+    00663 E0E0      LDI	R30,0
+    00664 075E      CPC	R21,R30
+    00665 F409      BNE	0x0667
+    00666 C03B      RJMP	0x06A2
+    00667 314A      CPI	R20,0x1A
+    00668 E0E0      LDI	R30,0
+    00669 075E      CPC	R21,R30
+    0066A F409      BNE	0x066C
+    0066B C03E      RJMP	0x06AA
+    0066C 314B      CPI	R20,0x1B
+    0066D E0E0      LDI	R30,0
+    0066E 075E      CPC	R21,R30
+    0066F F409      BNE	0x0671
+    00670 C041      RJMP	0x06B2
+    00671 C047      RJMP	0x06B9
+(0248) 	{
+(0249) 	    case 1://中音1
+(0250) 		{    
+(0251) 		    UART1_Send_String(N1,71);//UART舵机动作指令
+    00672 E427      LDI	R18,0x47
+    00673 E503      LDI	R16,0x53
+    00674 E018      LDI	R17,0x8
+    00675 DF3A      RCALL	_UART1_Send_String
+(0252) 			UART1_SendB(Note_end);
+    00676 9100 0101 LDS	R16,Note_end
+    00678 DF27      RCALL	_UART1_SendB
+(0253) 			break;
+    00679 C03F      RJMP	0x06B9
+(0254) 		}
+(0255) 		case 2://中音2
+(0256) 		{
+(0257) 		    UART1_Send_String(N2,70);
+    0067A E426      LDI	R18,0x46
+    0067B E90B      LDI	R16,0x9B
+    0067C E018      LDI	R17,0x8
+    0067D DF32      RCALL	_UART1_Send_String
+(0258) 			UART1_SendB(Note_end);
+    0067E 9100 0101 LDS	R16,Note_end
+    00680 DF1F      RCALL	_UART1_SendB
+(0259) 			break;
+    00681 C037      RJMP	0x06B9
+(0260) 		}
+(0261) 		case 3://中音3
+(0262) 		{
+(0263) 		    UART1_Send_String(N3,70);
+    00682 E426      LDI	R18,0x46
+    00683 EE02      LDI	R16,0xE2
+    00684 E018      LDI	R17,0x8
+    00685 DF2A      RCALL	_UART1_Send_String
+(0264) 			UART1_SendB(Note_end);
+    00686 9100 0101 LDS	R16,Note_end
+    00688 DF17      RCALL	_UART1_SendB
+(0265) 			break;
+    00689 C02F      RJMP	0x06B9
+(0266) 		}
+(0267) 		case 4://中音4
+(0268) 		{
+(0269) 		    UART1_Send_String(N4,72);
+    0068A E428      LDI	R18,0x48
+    0068B E209      LDI	R16,0x29
+    0068C E019      LDI	R17,0x9
+    0068D DF22      RCALL	_UART1_Send_String
+(0270) 			UART1_SendB(Note_end);
+    0068E 9100 0101 LDS	R16,Note_end
+    00690 DF0F      RCALL	_UART1_SendB
+(0271) 			break;
+    00691 C027      RJMP	0x06B9
+(0272) 		}
+(0273) 		case 5://中音5
+(0274) 		{
+(0275) 		    UART1_Send_String(N5,69);
+    00692 E425      LDI	R18,0x45
+    00693 E702      LDI	R16,0x72
+    00694 E019      LDI	R17,0x9
+    00695 DF1A      RCALL	_UART1_Send_String
+(0276) 			UART1_SendB(Note_end);
+    00696 9100 0101 LDS	R16,Note_end
+    00698 DF07      RCALL	_UART1_SendB
+(0277) 			break;
+    00699 C01F      RJMP	0x06B9
+(0278) 		}
+(0279) 		case 6://中音6
+(0280) 		{
+(0281) 		    UART1_Send_String(N6,69);
+    0069A E425      LDI	R18,0x45
+    0069B EB08      LDI	R16,0xB8
+    0069C E019      LDI	R17,0x9
+    0069D DF12      RCALL	_UART1_Send_String
+(0282) 			UART1_SendB(Note_end);
+    0069E 9100 0101 LDS	R16,Note_end
+    006A0 DEFF      RCALL	_UART1_SendB
+(0283) 			break;
+    006A1 C017      RJMP	0x06B9
+(0284) 		}
+(0285) 		case 25://低音5
+(0286) 		{
+(0287) 		    UART1_Send_String(N25,72);
+    006A2 E428      LDI	R18,0x48
+    006A3 E709      LDI	R16,0x79
+    006A4 E017      LDI	R17,7
+    006A5 DF0A      RCALL	_UART1_Send_String
+(0288) 			UART1_SendB(Note_end);
+    006A6 9100 0101 LDS	R16,Note_end
+    006A8 DEF7      RCALL	_UART1_SendB
+(0289) 			break;
+    006A9 C00F      RJMP	0x06B9
+(0290) 		}
+(0291) 		case 26://低音6
+(0292) 		{
+(0293) 		    UART1_Send_String(N26,72);
+    006AA E428      LDI	R18,0x48
+    006AB EC02      LDI	R16,0xC2
+    006AC E017      LDI	R17,7
+    006AD DF02      RCALL	_UART1_Send_String
+(0294) 			UART1_SendB(Note_end);
+    006AE 9100 0101 LDS	R16,Note_end
+    006B0 DEEF      RCALL	_UART1_SendB
+(0295) 			break;
+    006B1 C007      RJMP	0x06B9
+(0296) 		}
+(0297) 		case 27://低音7
+(0298) 		{
+(0299) 		    UART1_Send_String(N27,71);
+    006B2 E427      LDI	R18,0x47
+    006B3 E00B      LDI	R16,0xB
+    006B4 E018      LDI	R17,0x8
+    006B5 DEFA      RCALL	_UART1_Send_String
+(0300) 			UART1_SendB(Note_end);
+    006B6 9100 0101 LDS	R16,Note_end
+    006B8 DEE7      RCALL	_UART1_SendB
+(0301) 			break;
+    006B9 9159      LD	R21,Y+
+    006BA 9149      LD	R20,Y+
+    006BB 9624      ADIW	R28,4
+    006BC 9508      RET
+(0302) 		}									
+(0303) 	}    
+(0304) }
+(0305) 
+(0306) 
+(0307) //---------------------------【继电器模块控制相关函数】↓----------------------------------------------------
+(0308) 
+(0309) void Numeric_Valve(uchar state)//电气比例阀
+(0310) {
+(0311)     if(state)
+_Numeric_Valve:
+  state                --> R16
+    006BD 2300      TST	R16
+    006BE F011      BEQ	0x06C1
+(0312) 	{
+(0313) 	    //打开电气比例阀
+(0314) 		PORTA|=BIT(2);//PA2=1
+    006BF 9ADA      SBI	0x1B,2
+(0315) 	}
+    006C0 C001      RJMP	0x06C2
+(0316) 	else
+(0317) 	{
+(0318) 	    //关闭电气比例阀
+(0319) 		PORTA&=(~BIT(2));//PA2=0
+    006C1 98DA      CBI	0x1B,2
+(0320) 	}
+    006C2 9508      RET
+_Direction_Valve:
+  state                --> R20
+    006C3 934A      ST	-Y,R20
+    006C4 2F40      MOV	R20,R16
+(0321) }
+(0322) 
+(0323) void Direction_Valve(uchar state)//换向阀
+(0324) {
+(0325)     if(state==1)
+    006C5 3041      CPI	R20,1
+    006C6 F449      BNE	0x06D0
+(0326) 	{
+(0327) 	    //气流通向乐器
+(0328) 		PORTA|=BIT(1);//PA1=1
+    006C7 9AD9      SBI	0x1B,1
+(0329) 		UART1_Send_String("#0H",3);
+    006C8 E023      LDI	R18,3
+    006C9 E408      LDI	R16,0x48
+    006CA E01A      LDI	R17,0xA
+    006CB DEE4      RCALL	_UART1_Send_String
+(0330) 		UART1_SendB(Note_end);
+    006CC 9100 0101 LDS	R16,Note_end
+    006CE DED1      RCALL	_UART1_SendB
+(0331) 	}
+    006CF C008      RJMP	0x06D8
+(0332) 	else
+(0333) 	{
+(0334) 	    //气流排入大气
+(0335) 		PORTA&=(~BIT(1));//PA1=0
+    006D0 98D9      CBI	0x1B,1
+(0336) 		UART1_Send_String("#0L",3);
+    006D1 E023      LDI	R18,3
+    006D2 E404      LDI	R16,0x44
+    006D3 E01A      LDI	R17,0xA
+    006D4 DEDB      RCALL	_UART1_Send_String
+(0337) 		UART1_SendB(Note_end);
+    006D5 9100 0101 LDS	R16,Note_end
+    006D7 DEC8      RCALL	_UART1_SendB
+(0338) 	}
+    006D8 9149      LD	R20,Y+
+    006D9 9508      RET
+(0339) }
+(0340) 
+(0341) 
+(0342) //---------------------------【主函数】↓-----------------------------------------------------------
+(0343) void main(void)
+(0344) {
+(0345)     //初始化
+(0346) 	uart0_init(9600);//speaking module
+_main:
+    006DA E800      LDI	R16,0x80
+    006DB E215      LDI	R17,0x25
+    006DC DE50      RCALL	_uart0_init
+(0347) 	uart1_init(9600);//motor board
+    006DD E800      LDI	R16,0x80
+    006DE E215      LDI	R17,0x25
+    006DF DE8B      RCALL	_uart1_init
+    006E0 C03C      RJMP	0x071D
+(0348) 	
+(0349) 	//大循环
+(0350) 	while(1)
+(0351) 	{	    
+(0352) 	    if(uart0_received_flag==1)
+    006E1 9180 0100 LDS	R24,uart0_received_flag
+    006E3 3081      CPI	R24,1
+    006E4 F009      BEQ	0x06E6
+    006E5 C037      RJMP	0x071D
+(0353) 		{	
+(0354) 			switch(uart0_received_byte)
+    006E6 9140 0A4C LDS	R20,uart0_received_byte
+    006E8 2755      CLR	R21
+    006E9 3041      CPI	R20,1
+    006EA E0E0      LDI	R30,0
+    006EB 075E      CPC	R21,R30
+    006EC F069      BEQ	0x06FA
+    006ED 3042      CPI	R20,2
+    006EE E0E0      LDI	R30,0
+    006EF 075E      CPC	R21,R30
+    006F0 F081      BEQ	0x0701
+    006F1 3043      CPI	R20,3
+    006F2 E0E0      LDI	R30,0
+    006F3 075E      CPC	R21,R30
+    006F4 F099      BEQ	0x0708
+    006F5 3044      CPI	R20,4
+    006F6 E0E0      LDI	R30,0
+    006F7 075E      CPC	R21,R30
+    006F8 F0B9      BEQ	0x0710
+    006F9 C01D      RJMP	0x0717
+(0355) 			{
+(0356) 	    	    case 0x01://康定情歌
+(0357) 				{
+(0358) 		            delay(3000);
+    006FA EB08      LDI	R16,0xB8
+    006FB E01B      LDI	R17,0xB
+    006FC DE16      RCALL	_delay
+(0359) 					Play_Music(KangDingQingGe);
+    006FD E309      LDI	R16,0x39
+    006FE E011      LDI	R17,1
+    006FF DEC8      RCALL	_Play_Music
+(0360) 					break;
+    00700 C016      RJMP	0x0717
+(0361) 				}
+(0362) 			    case 0x02://月光下的凤尾竹
+(0363) 		    	{
+(0364) 		            delay(3500);
+    00701 EA0C      LDI	R16,0xAC
+    00702 E01D      LDI	R17,0xD
+    00703 DE0F      RCALL	_delay
+(0365) 					Play_Music(YueGuangXiaDeFengWeiZhu);
+    00704 E509      LDI	R16,0x59
+    00705 E014      LDI	R17,4
+    00706 DEC1      RCALL	_Play_Music
+(0366) 					break;
+    00707 C00F      RJMP	0x0717
+(0367) 			    }
+(0368) 			 	case 0x03://傣族民歌
+(0369) 		    	{
+(0370) 			        UART1_Send_String(Note_test3,14);
+    00708 E02E      LDI	R18,0xE
+    00709 E10D      LDI	R16,0x1D
+    0070A E011      LDI	R17,1
+    0070B DEA4      RCALL	_UART1_Send_String
+(0371) 			    	delay(50);
+    0070C E302      LDI	R16,0x32
+    0070D E010      LDI	R17,0
+    0070E DE04      RCALL	_delay
+(0372) 					break;
+    0070F C007      RJMP	0x0717
+(0373) 			    }
+(0374) 				case 0x04://太阳
+(0375) 		    	{
+(0376) 			        UART1_Send_String(Note_test4,14);
+    00710 E02E      LDI	R18,0xE
+    00711 E20B      LDI	R16,0x2B
+    00712 E011      LDI	R17,1
+    00713 DE9C      RCALL	_UART1_Send_String
+(0377) 			    	delay(50);
+    00714 E302      LDI	R16,0x32
+    00715 E010      LDI	R17,0
+    00716 DDFC      RCALL	_delay
+(0378) 					break;
+(0379) 			    }
+(0380) 		    }
+(0381) 			uart0_received_byte=0;
+    00717 2422      CLR	R2
+    00718 9220 0A4C STS	uart0_received_byte,R2
+(0382) 			uart0_received_flag=0;
+    0071A 9220 0100 STS	uart0_received_flag,R2
+(0383) 			UCSR0B|=BIT(RXCIE0);//使能RXCIE0，其余位保持不变
+FILE: <library>
+    0071C 9A57      SBI	0x0A,7
+    0071D CFC3      RJMP	0x06E1
+    0071E 9508      RET
+push_arg4:
+    0071F 933A      ST	-Y,R19
+    00720 932A      ST	-Y,R18
+push_arg2:
+    00721 931A      ST	-Y,R17
+    00722 930A      ST	-Y,R16
+    00723 9508      RET
+div32u:
+    00724 94E8      BCLR	6
+    00725 C001      RJMP	0x0727
+mod32u:
+    00726 9468      BSET	6
+    00727 D030      RCALL	long_div_prolog
+    00728 24CC      CLR	R12
+    00729 C009      RJMP	0x0733
+div32s:
+    0072A 94E8      BCLR	6
+    0072B C001      RJMP	0x072D
+mod32s:
+    0072C 9468      BSET	6
+    0072D D02A      RCALL	long_div_prolog
+    0072E FD37      SBRC	R19,7
+    0072F 940E 07D1 CALL	neg32
+    00731 FDB7      SBRC	R27,7
+    00732 D052      RCALL	neg_R24_R27
+    00733 2477      CLR	R7
+    00734 2488      CLR	R8
+    00735 2499      CLR	R9
+    00736 24AA      CLR	R10
+    00737 24BB      CLR	R11
+    00738 D042      RCALL	tst_R16_R19
+    00739 F0C1      BEQ	0x0752
+    0073A D045      RCALL	tst_R24_R27
+    0073B F0B1      BEQ	0x0752
+    0073C E2E8      LDI	R30,0x28
+    0073D 0F00      LSL	R16
+    0073E 1F11      ROL	R17
+    0073F 1F22      ROL	R18
+    00740 1F33      ROL	R19
+    00741 1C77      ROL	R7
+    00742 1C88      ROL	R8
+    00743 1C99      ROL	R9
+    00744 1CAA      ROL	R10
+    00745 1CBB      ROL	R11
+    00746 1688      CP	R8,R24
+    00747 0699      CPC	R9,R25
+    00748 06AA      CPC	R10,R26
+    00749 06BB      CPC	R11,R27
+    0074A F028      BCS	0x0750
+    0074B 1A88      SUB	R8,R24
+    0074C 0A99      SBC	R9,R25
+    0074D 0AAA      SBC	R10,R26
+    0074E 0ABB      SBC	R11,R27
+    0074F 9503      INC	R16
+    00750 95EA      DEC	R30
+    00751 F759      BNE	0x073D
+    00752 F426      BRTC	0x0757
+    00753 2D08      MOV	R16,R8
+    00754 2D19      MOV	R17,R9
+    00755 2D2A      MOV	R18,R10
+    00756 2D3B      MOV	R19,R11
+    00757 C013      RJMP	long_div_epilog
+long_div_prolog:
+    00758 927A      ST	-Y,R7
+    00759 928A      ST	-Y,R8
+    0075A 929A      ST	-Y,R9
+    0075B 92AA      ST	-Y,R10
+    0075C 92BA      ST	-Y,R11
+    0075D 92CA      ST	-Y,R12
+    0075E 93EA      ST	-Y,R30
+    0075F 938A      ST	-Y,R24
+    00760 939A      ST	-Y,R25
+    00761 93AA      ST	-Y,R26
+    00762 93BA      ST	-Y,R27
+    00763 858B      LDD	R24,Y+11
+    00764 859C      LDD	R25,Y+12
+    00765 85AD      LDD	R26,Y+13
+    00766 85BE      LDD	R27,Y+14
+    00767 2EC3      MOV	R12,R19
+    00768 F00E      BRTS	0x076A
+    00769 26CB      EOR	R12,R27
+    0076A 9508      RET
+long_div_epilog:
+    0076B FCC7      SBRC	R12,7
+    0076C 940E 07D1 CALL	neg32
+    0076E 91B9      LD	R27,Y+
+    0076F 91A9      LD	R26,Y+
+    00770 9199      LD	R25,Y+
+    00771 9189      LD	R24,Y+
+    00772 91E9      LD	R30,Y+
+    00773 90C9      LD	R12,Y+
+    00774 90B9      LD	R11,Y+
+    00775 90A9      LD	R10,Y+
+    00776 9099      LD	R9,Y+
+    00777 9089      LD	R8,Y+
+    00778 9079      LD	R7,Y+
+    00779 9624      ADIW	R28,4
+    0077A 9508      RET
+tst_R16_R19:
+    0077B 2FE0      MOV	R30,R16
+    0077C 2BE1      OR	R30,R17
+    0077D 2BE2      OR	R30,R18
+    0077E 2BE3      OR	R30,R19
+    0077F 9508      RET
+tst_R24_R27:
+    00780 2FE8      MOV	R30,R24
+    00781 2BE9      OR	R30,R25
+    00782 2BEA      OR	R30,R26
+    00783 2BEB      OR	R30,R27
+    00784 9508      RET
+neg_R24_R27:
+    00785 9580      COM	R24
+    00786 9590      COM	R25
+    00787 95A0      COM	R26
+    00788 95B0      COM	R27
+    00789 5F8F      SUBI	R24,0xFF
+    0078A 4F9F      SBCI	R25,0xFF
+    0078B 4FAF      SBCI	R26,0xFF
+    0078C 4FBF      SBCI	R27,0xFF
+    0078D 9508      RET
+elpm32:
+    0078E 93EA      ST	-Y,R30
+    0078F 93FA      ST	-Y,R31
+    00790 920A      ST	-Y,R0
+    00791 2FE0      MOV	R30,R16
+    00792 2FF1      MOV	R31,R17
+    00793 95D8      ELPM
+    00794 2D00      MOV	R16,R0
+    00795 9631      ADIW	R30,1
+    00796 95D8      ELPM
+    00797 2D10      MOV	R17,R0
+    00798 9631      ADIW	R30,1
+    00799 95D8      ELPM
+    0079A 2D20      MOV	R18,R0
+    0079B 9631      ADIW	R30,1
+    0079C 95D8      ELPM
+    0079D 2D30      MOV	R19,R0
+    0079E 9009      LD	R0,Y+
+    0079F 91F9      LD	R31,Y+
+    007A0 91E9      LD	R30,Y+
+    007A1 9508      RET
+pop_xgset003C:
+    007A2 90A9      LD	R10,Y+
+    007A3 90B9      LD	R11,Y+
+    007A4 90C9      LD	R12,Y+
+    007A5 90D9      LD	R13,Y+
+    007A6 9508      RET
+pop_xgset00FC:
+    007A7 90A9      LD	R10,Y+
+    007A8 90B9      LD	R11,Y+
+    007A9 90C9      LD	R12,Y+
+    007AA 90D9      LD	R13,Y+
+    007AB 90E9      LD	R14,Y+
+    007AC 90F9      LD	R15,Y+
+    007AD 9508      RET
+push_xgsetF0FC:
+    007AE 937A      ST	-Y,R23
+    007AF 936A      ST	-Y,R22
+push_xgset30FC:
+    007B0 935A      ST	-Y,R21
+    007B1 934A      ST	-Y,R20
+push_xgset00FC:
+    007B2 92FA      ST	-Y,R15
+    007B3 92EA      ST	-Y,R14
+push_xgset003C:
+    007B4 92DA      ST	-Y,R13
+    007B5 92CA      ST	-Y,R12
+    007B6 92BA      ST	-Y,R11
+    007B7 92AA      ST	-Y,R10
+    007B8 9508      RET
+push_xgsetF000:
+    007B9 937A      ST	-Y,R23
+    007BA 936A      ST	-Y,R22
+    007BB 935A      ST	-Y,R21
+    007BC 934A      ST	-Y,R20
+    007BD 9508      RET
+pop_xgsetF000:
+    007BE 9149      LD	R20,Y+
+    007BF 9159      LD	R21,Y+
+    007C0 9169      LD	R22,Y+
+    007C1 9179      LD	R23,Y+
+    007C2 9508      RET
+push_xgsetF00C:
+    007C3 937A      ST	-Y,R23
+    007C4 936A      ST	-Y,R22
+    007C5 935A      ST	-Y,R21
+    007C6 934A      ST	-Y,R20
+    007C7 92BA      ST	-Y,R11
+    007C8 92AA      ST	-Y,R10
+    007C9 9508      RET
+pop_xgsetF00C:
+    007CA 90A9      LD	R10,Y+
+    007CB 90B9      LD	R11,Y+
+    007CC 9149      LD	R20,Y+
+    007CD 9159      LD	R21,Y+
+    007CE 9169      LD	R22,Y+
+    007CF 9179      LD	R23,Y+
+    007D0 9508      RET
+neg32:
+    007D1 9500      COM	R16
+    007D2 9510      COM	R17
+    007D3 9520      COM	R18
+    007D4 9530      COM	R19
+    007D5 5F0F      SUBI	R16,0xFF
+    007D6 4F1F      SBCI	R17,0xFF
+    007D7 4F2F      SBCI	R18,0xFF
+    007D8 4F3F      SBCI	R19,0xFF
+    007D9 9508      RET
+fpsub:
+    007DA 9468      BSET	6
+    007DB C001      RJMP	fpadd_alt
+fpadd:
+    007DC 94E8      BCLR	6
+fpadd_alt:
+    007DD 940E 08E4 CALL	saveFPRegs
+    007DF 940E 0876 CALL	unpacks
+    007E1 F409      BNE	0x07E3
+    007E2 C048      RJMP	0x082B
+    007E3 2CE6      MOV	R14,R6
+    007E4 2CD5      MOV	R13,R5
+    007E5 2CC4      MOV	R12,R4
+    007E6 2EB3      MOV	R11,R19
+    007E7 2EA2      MOV	R10,R18
+    007E8 2E91      MOV	R9,R17
+    007E9 2E80      MOV	R8,R16
+    007EA 8100      LD	R16,Z
+    007EB 8111      LDD	R17,Z+1
+    007EC 8122      LDD	R18,Z+2
+    007ED 8133      LDD	R19,Z+3
+    007EE 940E 0876 CALL	unpacks
+    007F0 F409      BNE	0x07F2
+    007F1 C044      RJMP	0x0836
+    007F2 2D84      MOV	R24,R4
+    007F3 2D95      MOV	R25,R5
+    007F4 198C      SUB	R24,R12
+    007F5 099D      SBC	R25,R13
+    007F6 F0B9      BEQ	0x080E
+    007F7 F472      BPL	0x0806
+    007F8 9590      COM	R25
+    007F9 9580      COM	R24
+    007FA 9601      ADIW	R24,1
+    007FB 2C4C      MOV	R4,R12
+    007FC 2C5D      MOV	R5,R13
+    007FD 3188      CPI	R24,0x18
+    007FE F5B8      BCC	0x0836
+    007FF 9535      ASR	R19
+    00800 9527      ROR	R18
+    00801 9517      ROR	R17
+    00802 9507      ROR	R16
+    00803 9701      SBIW	R24,1
+    00804 F7D1      BNE	0x07FF
+    00805 C008      RJMP	0x080E
+    00806 3188      CPI	R24,0x18
+    00807 F518      BCC	0x082B
+    00808 94B5      ASR	R11
+    00809 94A7      ROR	R10
+    0080A 9497      ROR	R9
+    0080B 9487      ROR	R8
+    0080C 9701      SBIW	R24,1
+    0080D F7D1      BNE	0x0808
+    0080E 2466      CLR	R6
+    0080F F02E      BRTS	0x0815
+    00810 0D08      ADD	R16,R8
+    00811 1D19      ADC	R17,R9
+    00812 1D2A      ADC	R18,R10
+    00813 1D3B      ADC	R19,R11
+    00814 C009      RJMP	0x081E
+    00815 1A80      SUB	R8,R16
+    00816 0A91      SBC	R9,R17
+    00817 0AA2      SBC	R10,R18
+    00818 0AB3      SBC	R11,R19
+    00819 2D08      MOV	R16,R8
+    0081A 2D19      MOV	R17,R9
+    0081B 2D2A      MOV	R18,R10
+    0081C 2D3B      MOV	R19,R11
+    0081D 2333      TST	R19
+    0081E F422      BPL	0x0823
+    0081F 940E 07D1 CALL	neg32
+    00821 E880      LDI	R24,0x80
+    00822 2E68      MOV	R6,R24
+    00823 940E 089F CALL	normalize_and_pack
+    00825 C002      RJMP	0x0828
+    00826 940E 08D4 CALL	pack
+    00828 940E 08F3 CALL	restoreFPRegs
+    0082A 9508      RET
+    0082B 8100      LD	R16,Z
+    0082C 8111      LDD	R17,Z+1
+    0082D 8122      LDD	R18,Z+2
+    0082E 8133      LDD	R19,Z+3
+    0082F F7C6      BRTC	0x0828
+    00830 940E 087E CALL	tstR16_R19
+    00832 F3A9      BEQ	0x0828
+    00833 E880      LDI	R24,0x80
+    00834 2738      EOR	R19,R24
+    00835 CFF2      RJMP	0x0828
+    00836 2D08      MOV	R16,R8
+    00837 2D19      MOV	R17,R9
+    00838 2D2A      MOV	R18,R10
+    00839 2D3B      MOV	R19,R11
+    0083A 2C4C      MOV	R4,R12
+    0083B 2C5D      MOV	R5,R13
+    0083C 2C6E      MOV	R6,R14
+    0083D 2333      TST	R19
+    0083E F73A      BPL	0x0826
+    0083F 940E 07D1 CALL	neg32
+    00841 E880      LDI	R24,0x80
+    00842 2E68      MOV	R6,R24
+    00843 CFE2      RJMP	0x0826
+fpint:
+    00844 924A      ST	-Y,R4
+    00845 925A      ST	-Y,R5
+    00846 926A      ST	-Y,R6
+    00847 938A      ST	-Y,R24
+    00848 940E 0886 CALL	unpacku
+    0084A F111      BEQ	0x086D
+    0084B 2055      TST	R5
+    0084C F0E2      BMI	0x0869
+    0084D E18F      LDI	R24,0x1F
+    0084E 1648      CP	R4,R24
+    0084F F4C0      BCC	0x0868
+    00850 E187      LDI	R24,0x17
+    00851 1648      CP	R4,R24
+    00852 F0D1      BEQ	0x086D
+    00853 F458      BCC	0x085F
+    00854 9441      NEG	R4
+    00855 EE89      LDI	R24,0xE9
+    00856 1A48      SUB	R4,R24
+    00857 C005      RJMP	0x085D
+    00858 9535      ASR	R19
+    00859 9527      ROR	R18
+    0085A 9517      ROR	R17
+    0085B 9507      ROR	R16
+    0085C 944A      DEC	R4
+    0085D F7D1      BNE	0x0858
+    0085E C00E      RJMP	0x086D
+    0085F E187      LDI	R24,0x17
+    00860 1A48      SUB	R4,R24
+    00861 0F00      LSL	R16
+    00862 1F11      ROL	R17
+    00863 1F22      ROL	R18
+    00864 1F33      ROL	R19
+    00865 944A      DEC	R4
+    00866 F7D1      BNE	0x0861
+    00867 C005      RJMP	0x086D
+    00868 E73F      LDI	R19,0x7F
+    00869 2F23      MOV	R18,R19
+    0086A 2F13      MOV	R17,R19
+    0086B 2F03      MOV	R16,R19
+    0086C C004      RJMP	0x0871
+    0086D 2066      TST	R6
+    0086E F011      BEQ	0x0871
+    0086F 940E 07D1 CALL	neg32
+    00871 9189      LD	R24,Y+
+    00872 9069      LD	R6,Y+
+    00873 9059      LD	R5,Y+
+    00874 9049      LD	R4,Y+
+    00875 9508      RET
+unpacks:
+    00876 D00F      RCALL	unpacku
+    00877 F029      BEQ	0x087D
+    00878 2066      TST	R6
+    00879 F011      BEQ	0x087C
+    0087A 940E 07D1 CALL	neg32
+    0087C 9498      BCLR	1
+    0087D 9508      RET
+tstR16_R19:
+    0087E 2300      TST	R16
+    0087F F429      BNE	0x0885
+    00880 2311      TST	R17
+    00881 F419      BNE	0x0885
+    00882 2322      TST	R18
+    00883 F409      BNE	0x0885
+    00884 2333      TST	R19
+    00885 9508      RET
+unpacku:
+    00886 DFF7      RCALL	tstR16_R19
+    00887 F099      BEQ	0x089B
+    00888 938A      ST	-Y,R24
+    00889 2E63      MOV	R6,R19
+    0088A E880      LDI	R24,0x80
+    0088B 2268      AND	R6,R24
+    0088C 0F22      LSL	R18
+    0088D 1F33      ROL	R19
+    0088E 2E43      MOV	R4,R19
+    0088F E78F      LDI	R24,0x7F
+    00890 1A48      SUB	R4,R24
+    00891 2455      CLR	R5
+    00892 2788      CLR	R24
+    00893 0A58      SBC	R5,R24
+    00894 9526      LSR	R18
+    00895 E830      LDI	R19,0x80
+    00896 2B23      OR	R18,R19
+    00897 2733      CLR	R19
+    00898 9189      LD	R24,Y+
+    00899 9498      BCLR	1
+    0089A 9508      RET
+    0089B 2444      CLR	R4
+    0089C 2455      CLR	R5
+    0089D 2466      CLR	R6
+    0089E 9508      RET
+normalize_and_pack:
+    0089F DFDE      RCALL	tstR16_R19
+    008A0 F409      BNE	0x08A2
+    008A1 9508      RET
+    008A2 93AA      ST	-Y,R26
+    008A3 93BA      ST	-Y,R27
+    008A4 01D2      MOVW	R26,R4
+    008A5 939A      ST	-Y,R25
+    008A6 938A      ST	-Y,R24
+    008A7 E78E      LDI	R24,0x7E
+    008A8 E090      LDI	R25,0
+    008A9 2333      TST	R19
+    008AA F049      BEQ	0x08B4
+    008AB 9536      LSR	R19
+    008AC 9527      ROR	R18
+    008AD 9517      ROR	R17
+    008AE 9507      ROR	R16
+    008AF 17A8      CP	R26,R24
+    008B0 07B9      CPC	R27,R25
+    008B1 F4CC      BGE	0x08CB
+    008B2 9611      ADIW	R26,1
+    008B3 CFF5      RJMP	0x08A9
+    008B4 9580      COM	R24
+    008B5 9590      COM	R25
+    008B6 9601      ADIW	R24,1
+    008B7 2322      TST	R18
+    008B8 F0BA      BMI	0x08D0
+    008B9 0F00      LSL	R16
+    008BA 1F11      ROL	R17
+    008BB 1F22      ROL	R18
+    008BC 17A8      CP	R26,R24
+    008BD 07B9      CPC	R27,R25
+    008BE F014      BLT	0x08C1
+    008BF 9711      SBIW	R26,1
+    008C0 CFF6      RJMP	0x08B7
+    008C1 2700      CLR	R16
+    008C2 2711      CLR	R17
+    008C3 2722      CLR	R18
+    008C4 2733      CLR	R19
+    008C5 9189      LD	R24,Y+
+    008C6 9199      LD	R25,Y+
+    008C7 012D      MOVW	R4,R26
+    008C8 91B9      LD	R27,Y+
+    008C9 91A9      LD	R26,Y+
+    008CA 9508      RET
+    008CB 2733      CLR	R19
+    008CC EF0F      LDI	R16,0xFF
+    008CD 2F10      MOV	R17,R16
+    008CE E72F      LDI	R18,0x7F
+    008CF 2F32      MOV	R19,R18
+    008D0 9189      LD	R24,Y+
+    008D1 9199      LD	R25,Y+
+    008D2 012D      MOVW	R4,R26
+    008D3 C002      RJMP	0x08D6
+pack:
+    008D4 93AA      ST	-Y,R26
+    008D5 93BA      ST	-Y,R27
+    008D6 DFA7      RCALL	tstR16_R19
+    008D7 F049      BEQ	0x08E1
+    008D8 01D2      MOVW	R26,R4
+    008D9 58A1      SUBI	R26,0x81
+    008DA 4FBF      SBCI	R27,0xFF
+    008DB 012D      MOVW	R4,R26
+    008DC 2D34      MOV	R19,R4
+    008DD 0F22      LSL	R18
+    008DE 9536      LSR	R19
+    008DF 9527      ROR	R18
+    008E0 2936      OR	R19,R6
+    008E1 91B9      LD	R27,Y+
+    008E2 91A9      LD	R26,Y+
+    008E3 9508      RET
+saveFPRegs:
+    008E4 924A      ST	-Y,R4
+    008E5 925A      ST	-Y,R5
+    008E6 926A      ST	-Y,R6
+    008E7 927A      ST	-Y,R7
+    008E8 928A      ST	-Y,R8
+    008E9 929A      ST	-Y,R9
+    008EA 92AA      ST	-Y,R10
+    008EB 92BA      ST	-Y,R11
+    008EC 92CA      ST	-Y,R12
+    008ED 92DA      ST	-Y,R13
+    008EE 92EA      ST	-Y,R14
+    008EF 92FA      ST	-Y,R15
+    008F0 938A      ST	-Y,R24
+    008F1 939A      ST	-Y,R25
+    008F2 9508      RET
+restoreFPRegs:
+    008F3 9199      LD	R25,Y+
+    008F4 9189      LD	R24,Y+
+    008F5 90F9      LD	R15,Y+
+    008F6 90E9      LD	R14,Y+
+    008F7 90D9      LD	R13,Y+
+    008F8 90C9      LD	R12,Y+
+    008F9 90B9      LD	R11,Y+
+    008FA 90A9      LD	R10,Y+
+    008FB 9099      LD	R9,Y+
+    008FC 9089      LD	R8,Y+
+    008FD 9079      LD	R7,Y+
+    008FE 9069      LD	R6,Y+
+    008FF 9059      LD	R5,Y+
+    00900 9049      LD	R4,Y+
+    00901 9508      RET
+fpmule:
+    00902 940E 08E4 CALL	saveFPRegs
+    00904 93AA      ST	-Y,R26
+    00905 93BA      ST	-Y,R27
+    00906 940E 0886 CALL	unpacku
+    00908 F1E1      BEQ	0x0945
+    00909 2CE6      MOV	R14,R6
+    0090A 2CD5      MOV	R13,R5
+    0090B 2CC4      MOV	R12,R4
+    0090C 2EB3      MOV	R11,R19
+    0090D 2EA2      MOV	R10,R18
+    0090E 2E91      MOV	R9,R17
+    0090F 2E80      MOV	R8,R16
+    00910 8100      LD	R16,Z
+    00911 8111      LDD	R17,Z+1
+    00912 8122      LDD	R18,Z+2
+    00913 8133      LDD	R19,Z+3
+    00914 940E 0886 CALL	unpacku
+    00916 F171      BEQ	0x0945
+    00917 246E      EOR	R6,R14
+    00918 0C4C      ADD	R4,R12
+    00919 1C5D      ADC	R5,R13
+    0091A E880      LDI	R24,0x80
+    0091B 1648      CP	R4,R24
+    0091C 0653      CPC	R5,R19
+    0091D F564      BGE	0x094A
+    0091E E881      LDI	R24,0x81
+    0091F 1648      CP	R4,R24
+    00920 EF8F      LDI	R24,0xFF
+    00921 0658      CPC	R5,R24
+    00922 F16C      BLT	0x0950
+    00923 9EA2      MUL	R10,R18
+    00924 2DB1      MOV	R27,R1
+    00925 2DA0      MOV	R26,R0
+    00926 9E91      MUL	R9,R17
+    00927 2D91      MOV	R25,R1
+    00928 2D80      MOV	R24,R0
+    00929 9EA0      MUL	R10,R16
+    0092A 0D80      ADD	R24,R0
+    0092B 1D91      ADC	R25,R1
+    0092C 1FA3      ADC	R26,R19
+    0092D 1FB3      ADC	R27,R19
+    0092E 9E82      MUL	R8,R18
+    0092F 0D80      ADD	R24,R0
+    00930 1D91      ADC	R25,R1
+    00931 1FA3      ADC	R26,R19
+    00932 1FB3      ADC	R27,R19
+    00933 9E92      MUL	R9,R18
+    00934 0D90      ADD	R25,R0
+    00935 1DA1      ADC	R26,R1
+    00936 1FB3      ADC	R27,R19
+    00937 9EA1      MUL	R10,R17
+    00938 0D90      ADD	R25,R0
+    00939 1DA1      ADC	R26,R1
+    0093A 1FB3      ADC	R27,R19
+    0093B 2F2B      MOV	R18,R27
+    0093C 2F1A      MOV	R17,R26
+    0093D 2F09      MOV	R16,R25
+    0093E 0F88      LSL	R24
+    0093F 1F00      ROL	R16
+    00940 1F11      ROL	R17
+    00941 1F22      ROL	R18
+    00942 1F33      ROL	R19
+    00943 940E 089F CALL	normalize_and_pack
+    00945 91B9      LD	R27,Y+
+    00946 91A9      LD	R26,Y+
+    00947 940E 08F3 CALL	restoreFPRegs
+    00949 9508      RET
+    0094A EF0F      LDI	R16,0xFF
+    0094B 2F10      MOV	R17,R16
+    0094C E72F      LDI	R18,0x7F
+    0094D E78F      LDI	R24,0x7F
+    0094E 2E48      MOV	R4,R24
+    0094F CFF5      RJMP	0x0945
+    00950 2700      CLR	R16
+    00951 2F10      MOV	R17,R16
+    00952 2F20      MOV	R18,R16
+    00953 2F30      MOV	R19,R16
+    00954 CFF0      RJMP	0x0945
+fpmule1:
+    00955 93FA      ST	-Y,R31
+    00956 93EA      ST	-Y,R30
+    00957 81EA      LDD	R30,Y+2
+    00958 81FB      LDD	R31,Y+3
+    00959 940E 0902 CALL	fpmule
+    0095B 91E9      LD	R30,Y+
+    0095C 91F9      LD	R31,Y+
+    0095D 9622      ADIW	R28,2
+    0095E 9508      RET
+fpcmp:
+    0095F 940E 07DA CALL	fpsub
+    00961 2333      TST	R19
+    00962 F03A      BMI	0x096A
+    00963 940E 087E CALL	tstR16_R19
+    00965 F011      BEQ	0x0968
+    00966 E001      LDI	R16,1
+    00967 9508      RET
+    00968 2700      CLR	R16
+    00969 9508      RET
+    0096A EF0F      LDI	R16,0xFF
+    0096B 9508      RET
+fpcmp2:
+    0096C 93FA      ST	-Y,R31
+    0096D 93EA      ST	-Y,R30
+    0096E 2FEC      MOV	R30,R28
+    0096F 2FFD      MOV	R31,R29
+    00970 9632      ADIW	R30,2
+    00971 940E 095F CALL	fpcmp
+    00973 91E9      LD	R30,Y+
+    00974 91F9      LD	R31,Y+
+    00975 9624      ADIW	R28,4
+    00976 2300      TST	R16
+    00977 9508      RET

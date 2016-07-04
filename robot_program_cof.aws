@@ -1,0 +1,1 @@
+<AVRWorkspace><IOSettings><CurrentRegisters><JTAG><register register="MCUCSR" group="JTAG" display="1" locked="0"/></JTAG><JTAG><register register="OCDR" group="JTAG" display="1" locked="0"/></JTAG></CurrentRegisters></IOSettings><part name="ATmega128"/><Files/></AVRWorkspace>

@@ -1,0 +1,2786 @@
+                        .module Robot_Program.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile Robot_Program.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Robot_Program.c
+ 0000           _uart0_received_flag::
+ 0000                   .blkb 1
+                        .area idata
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0001                   .dbfile Robot_Program.c
+ 0001                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0001                   .dbsym e uart0_received_flag _uart0_received_flag c
+ 0001           _Note_end::
+ 0001                   .blkb 1
+                        .area idata
+ 0001 0D                .byte 13
+                        .area data(ram, con, rel)
+ 0002                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0002                   .dbsym e Note_end _Note_end c
+ 0002           _Note_test1::
+ 0002                   .blkb 13
+                        .area idata
+ 0002 23302050373530205431303000        .byte 35,48,32,'P,55,53,48,32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 000F                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 000F                   .dbsym e Note_test1 _Note_test1 A[13:13]c
+ 000F           _Note_test2::
+ 000F                   .blkb 14
+                        .area idata
+ 000F 2330205031343530205431303000      .byte 35,48,32,'P,49,52,53,48,32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 001D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 001D                   .dbsym e Note_test2 _Note_test2 A[14:14]c
+ 001D           _Note_test3::
+ 001D                   .blkb 2
+                        .area idata
+ 001D 2330              .byte 35,48
+                        .area data(ram, con, rel)
+ 001F                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 001F                   .blkb 2
+                        .area idata
+ 001F 2050              .byte 32,'P
+                        .area data(ram, con, rel)
+ 0021                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0021                   .blkb 2
+                        .area idata
+ 0021 3130              .byte 49,48
+                        .area data(ram, con, rel)
+ 0023                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0023                   .blkb 2
+                        .area idata
+ 0023 3030              .byte 48,48
+                        .area data(ram, con, rel)
+ 0025                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0025                   .blkb 2
+                        .area idata
+ 0025 2054              .byte 32,'T
+                        .area data(ram, con, rel)
+ 0027                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0027                   .blkb 2
+                        .area idata
+ 0027 3130              .byte 49,48
+                        .area data(ram, con, rel)
+ 0029                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0029                   .blkb 2
+                        .area idata
+ 0029 300D              .byte 48,13
+                        .area data(ram, con, rel)
+ 002B                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 002B                   .dbsym e Note_test3 _Note_test3 A[14:14]c
+ 002B           _Note_test4::
+ 002B                   .blkb 2
+                        .area idata
+ 002B 2330              .byte 35,48
+                        .area data(ram, con, rel)
+ 002D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 002D                   .blkb 2
+                        .area idata
+ 002D 2050              .byte 32,'P
+                        .area data(ram, con, rel)
+ 002F                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 002F                   .blkb 2
+                        .area idata
+ 002F 3230              .byte 50,48
+                        .area data(ram, con, rel)
+ 0031                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0031                   .blkb 2
+                        .area idata
+ 0031 3030              .byte 48,48
+                        .area data(ram, con, rel)
+ 0033                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0033                   .blkb 2
+                        .area idata
+ 0033 2054              .byte 32,'T
+                        .area data(ram, con, rel)
+ 0035                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0035                   .blkb 2
+                        .area idata
+ 0035 3130              .byte 49,48
+                        .area data(ram, con, rel)
+ 0037                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0037                   .blkb 2
+                        .area idata
+ 0037 300D              .byte 48,13
+                        .area data(ram, con, rel)
+ 0039                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0039                   .dbsym e Note_test4 _Note_test4 A[14:14]c
+ 0039           _KangDingQingGe::
+ 0039                   .blkb 4
+                        .area idata
+ 0039 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 003D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 003D                   .blkb 4
+                        .area idata
+ 003D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0041                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0041                   .blkb 4
+                        .area idata
+ 0041 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 0045                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0045                   .blkb 4
+                        .area idata
+ 0045 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0049                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0049                   .blkb 4
+                        .area idata
+ 0049 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 004D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 004D                   .blkb 4
+                        .area idata
+ 004D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0051                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0051                   .blkb 4
+                        .area idata
+ 0051 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 0055                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0055                   .blkb 4
+                        .area idata
+ 0055 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0059                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0059                   .blkb 4
+                        .area idata
+ 0059 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 005D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 005D                   .blkb 4
+                        .area idata
+ 005D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0061                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0061                   .blkb 4
+                        .area idata
+ 0061 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 0065                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0065                   .blkb 4
+                        .area idata
+ 0065 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0069                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0069                   .blkb 4
+                        .area idata
+ 0069 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 006D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 006D                   .blkb 4
+                        .area idata
+ 006D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0071                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0071                   .blkb 4
+                        .area idata
+ 0071 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 0075                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0075                   .blkb 4
+                        .area idata
+ 0075 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0079                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0079                   .blkb 4
+                        .area idata
+ 0079 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 007D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 007D                   .blkb 4
+                        .area idata
+ 007D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0081                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0081                   .blkb 4
+                        .area idata
+ 0081 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 0085                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0085                   .blkb 4
+                        .area idata
+ 0085 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0089                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0089                   .blkb 4
+                        .area idata
+ 0089 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 008D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 008D                   .blkb 4
+                        .area idata
+ 008D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0091                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0091                   .blkb 4
+                        .area idata
+ 0091 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 0095                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0095                   .blkb 4
+                        .area idata
+ 0095 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0099                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0099                   .blkb 4
+                        .area idata
+ 0099 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 009D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 009D                   .blkb 4
+                        .area idata
+ 009D 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 00A1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00A1                   .blkb 4
+                        .area idata
+ 00A1 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 00A5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00A5                   .blkb 4
+                        .area idata
+ 00A5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 00A9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00A9                   .blkb 4
+                        .area idata
+ 00A9 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 00AD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00AD                   .blkb 4
+                        .area idata
+ 00AD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 00B1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00B1                   .blkb 4
+                        .area idata
+ 00B1 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 00B5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00B5                   .blkb 4
+                        .area idata
+ 00B5 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 00B9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00B9                   .blkb 4
+                        .area idata
+ 00B9 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 00BD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00BD                   .blkb 4
+                        .area idata
+ 00BD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 00C1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00C1                   .blkb 4
+                        .area idata
+ 00C1 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 00C5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00C5                   .blkb 4
+                        .area idata
+ 00C5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 00C9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00C9                   .blkb 4
+                        .area idata
+ 00C9 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 00CD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00CD                   .blkb 4
+                        .area idata
+ 00CD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 00D1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00D1                   .blkb 4
+                        .area idata
+ 00D1 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 00D5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00D5                   .blkb 4
+                        .area idata
+ 00D5 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 00D9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00D9                   .blkb 4
+                        .area idata
+ 00D9 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 00DD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00DD                   .blkb 4
+                        .area idata
+ 00DD 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 00E1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00E1                   .blkb 4
+                        .area idata
+ 00E1 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 00E5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00E5                   .blkb 4
+                        .area idata
+ 00E5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 00E9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00E9                   .blkb 4
+                        .area idata
+ 00E9 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 00ED                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00ED                   .blkb 4
+                        .area idata
+ 00ED 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 00F1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00F1                   .blkb 4
+                        .area idata
+ 00F1 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 00F5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00F5                   .blkb 4
+                        .area idata
+ 00F5 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 00F9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00F9                   .blkb 4
+                        .area idata
+ 00F9 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 00FD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 00FD                   .blkb 4
+                        .area idata
+ 00FD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0101                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0101                   .blkb 4
+                        .area idata
+ 0101 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0105                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0105                   .blkb 4
+                        .area idata
+ 0105 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0109                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0109                   .blkb 4
+                        .area idata
+ 0109 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 010D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 010D                   .blkb 4
+                        .area idata
+ 010D 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0111                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0111                   .blkb 4
+                        .area idata
+ 0111 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0115                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0115                   .blkb 4
+                        .area idata
+ 0115 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0119                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0119                   .blkb 4
+                        .area idata
+ 0119 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 011D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 011D                   .blkb 4
+                        .area idata
+ 011D 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0121                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0121                   .blkb 4
+                        .area idata
+ 0121 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0125                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0125                   .blkb 4
+                        .area idata
+ 0125 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0129                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0129                   .blkb 4
+                        .area idata
+ 0129 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 012D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 012D                   .blkb 4
+                        .area idata
+ 012D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0131                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0131                   .blkb 4
+                        .area idata
+ 0131 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 0135                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0135                   .blkb 4
+                        .area idata
+ 0135 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0139                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0139                   .blkb 4
+                        .area idata
+ 0139 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 013D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 013D                   .blkb 4
+                        .area idata
+ 013D 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0141                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0141                   .blkb 4
+                        .area idata
+ 0141 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 0145                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0145                   .blkb 4
+                        .area idata
+ 0145 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0149                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0149                   .blkb 4
+                        .area idata
+ 0149 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 014D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 014D                   .blkb 4
+                        .area idata
+ 014D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0151                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0151                   .blkb 4
+                        .area idata
+ 0151 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 0155                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0155                   .blkb 4
+                        .area idata
+ 0155 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0159                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0159                   .blkb 4
+                        .area idata
+ 0159 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 015D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 015D                   .blkb 4
+                        .area idata
+ 015D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0161                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0161                   .blkb 4
+                        .area idata
+ 0161 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0165                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0165                   .blkb 4
+                        .area idata
+ 0165 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0169                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0169                   .blkb 4
+                        .area idata
+ 0169 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 016D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 016D                   .blkb 4
+                        .area idata
+ 016D 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0171                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0171                   .blkb 4
+                        .area idata
+ 0171 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 0175                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0175                   .blkb 4
+                        .area idata
+ 0175 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0179                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0179                   .blkb 4
+                        .area idata
+ 0179 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 017D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 017D                   .blkb 4
+                        .area idata
+ 017D 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0181                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0181                   .blkb 4
+                        .area idata
+ 0181 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 0185                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0185                   .blkb 4
+                        .area idata
+ 0185 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0189                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0189                   .blkb 4
+                        .area idata
+ 0189 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 018D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 018D                   .blkb 4
+                        .area idata
+ 018D 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0191                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0191                   .blkb 4
+                        .area idata
+ 0191 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 0195                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0195                   .blkb 4
+                        .area idata
+ 0195 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0199                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0199                   .blkb 4
+                        .area idata
+ 0199 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 019D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 019D                   .blkb 4
+                        .area idata
+ 019D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 01A1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01A1                   .blkb 4
+                        .area idata
+ 01A1 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 01A5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01A5                   .blkb 4
+                        .area idata
+ 01A5 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 01A9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01A9                   .blkb 4
+                        .area idata
+ 01A9 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 01AD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01AD                   .blkb 4
+                        .area idata
+ 01AD 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 01B1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01B1                   .blkb 4
+                        .area idata
+ 01B1 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 01B5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01B5                   .blkb 4
+                        .area idata
+ 01B5 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 01B9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01B9                   .blkb 4
+                        .area idata
+ 01B9 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 01BD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01BD                   .blkb 4
+                        .area idata
+ 01BD 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 01C1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01C1                   .blkb 4
+                        .area idata
+ 01C1 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 01C5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01C5                   .blkb 4
+                        .area idata
+ 01C5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 01C9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01C9                   .blkb 4
+                        .area idata
+ 01C9 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 01CD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01CD                   .blkb 4
+                        .area idata
+ 01CD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 01D1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01D1                   .blkb 4
+                        .area idata
+ 01D1 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 01D5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01D5                   .blkb 4
+                        .area idata
+ 01D5 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 01D9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01D9                   .blkb 4
+                        .area idata
+ 01D9 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 01DD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01DD                   .blkb 4
+                        .area idata
+ 01DD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 01E1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01E1                   .blkb 4
+                        .area idata
+ 01E1 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 01E5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01E5                   .blkb 4
+                        .area idata
+ 01E5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 01E9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01E9                   .blkb 4
+                        .area idata
+ 01E9 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 01ED                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01ED                   .blkb 4
+                        .area idata
+ 01ED 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 01F1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01F1                   .blkb 4
+                        .area idata
+ 01F1 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 01F5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01F5                   .blkb 4
+                        .area idata
+ 01F5 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 01F9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01F9                   .blkb 4
+                        .area idata
+ 01F9 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 01FD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 01FD                   .blkb 4
+                        .area idata
+ 01FD 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0201                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0201                   .blkb 4
+                        .area idata
+ 0201 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0205                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0205                   .blkb 4
+                        .area idata
+ 0205 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0209                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0209                   .blkb 4
+                        .area idata
+ 0209 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 020D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 020D                   .blkb 4
+                        .area idata
+ 020D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0211                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0211                   .blkb 4
+                        .area idata
+ 0211 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 0215                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0215                   .blkb 4
+                        .area idata
+ 0215 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0219                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0219                   .blkb 4
+                        .area idata
+ 0219 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 021D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 021D                   .blkb 4
+                        .area idata
+ 021D 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0221                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0221                   .blkb 4
+                        .area idata
+ 0221 0000F041          .word 0x0,0x41f0
+                        .area data(ram, con, rel)
+ 0225                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0225                   .blkb 4
+                        .area idata
+ 0225 0000F041          .word 0x0,0x41f0
+                        .area data(ram, con, rel)
+ 0229                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0229                   .blkb 304
+                        .area idata
+ 0229 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0265 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 02A1 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 02DD 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0319 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0355 00000000          .byte 0,0,0,0
+                        .area data(ram, con, rel)
+ 0359                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0359                   .dbsym e KangDingQingGe _KangDingQingGe A[800:100:2]D
+ 0359           _YueGuangXiaDeFengWeiZhu::
+ 0359                   .blkb 4
+                        .area idata
+ 0359 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 035D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 035D                   .blkb 4
+                        .area idata
+ 035D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0361                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0361                   .blkb 4
+                        .area idata
+ 0361 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 0365                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0365                   .blkb 4
+                        .area idata
+ 0365 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0369                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0369                   .blkb 4
+                        .area idata
+ 0369 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 036D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 036D                   .blkb 4
+                        .area idata
+ 036D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0371                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0371                   .blkb 4
+                        .area idata
+ 0371 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0375                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0375                   .blkb 4
+                        .area idata
+ 0375 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0379                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0379                   .blkb 4
+                        .area idata
+ 0379 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 037D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 037D                   .blkb 4
+                        .area idata
+ 037D 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0381                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0381                   .blkb 4
+                        .area idata
+ 0381 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0385                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0385                   .blkb 4
+                        .area idata
+ 0385 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0389                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0389                   .blkb 4
+                        .area idata
+ 0389 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 038D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 038D                   .blkb 4
+                        .area idata
+ 038D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0391                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0391                   .blkb 4
+                        .area idata
+ 0391 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 0395                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0395                   .blkb 4
+                        .area idata
+ 0395 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0399                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0399                   .blkb 4
+                        .area idata
+ 0399 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 039D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 039D                   .blkb 4
+                        .area idata
+ 039D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 03A1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03A1                   .blkb 4
+                        .area idata
+ 03A1 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 03A5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03A5                   .blkb 4
+                        .area idata
+ 03A5 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 03A9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03A9                   .blkb 4
+                        .area idata
+ 03A9 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 03AD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03AD                   .blkb 4
+                        .area idata
+ 03AD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 03B1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03B1                   .blkb 4
+                        .area idata
+ 03B1 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 03B5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03B5                   .blkb 4
+                        .area idata
+ 03B5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 03B9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03B9                   .blkb 4
+                        .area idata
+ 03B9 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 03BD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03BD                   .blkb 4
+                        .area idata
+ 03BD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 03C1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03C1                   .blkb 4
+                        .area idata
+ 03C1 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 03C5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03C5                   .blkb 4
+                        .area idata
+ 03C5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 03C9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03C9                   .blkb 4
+                        .area idata
+ 03C9 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 03CD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03CD                   .blkb 4
+                        .area idata
+ 03CD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 03D1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03D1                   .blkb 4
+                        .area idata
+ 03D1 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 03D5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03D5                   .blkb 4
+                        .area idata
+ 03D5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 03D9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03D9                   .blkb 4
+                        .area idata
+ 03D9 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 03DD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03DD                   .blkb 4
+                        .area idata
+ 03DD 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 03E1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03E1                   .blkb 4
+                        .area idata
+ 03E1 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 03E5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03E5                   .blkb 4
+                        .area idata
+ 03E5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 03E9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03E9                   .blkb 4
+                        .area idata
+ 03E9 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 03ED                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03ED                   .blkb 4
+                        .area idata
+ 03ED 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 03F1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03F1                   .blkb 4
+                        .area idata
+ 03F1 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 03F5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03F5                   .blkb 4
+                        .area idata
+ 03F5 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 03F9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03F9                   .blkb 4
+                        .area idata
+ 03F9 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 03FD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 03FD                   .blkb 4
+                        .area idata
+ 03FD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0401                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0401                   .blkb 4
+                        .area idata
+ 0401 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0405                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0405                   .blkb 4
+                        .area idata
+ 0405 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0409                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0409                   .blkb 4
+                        .area idata
+ 0409 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 040D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 040D                   .blkb 4
+                        .area idata
+ 040D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0411                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0411                   .blkb 4
+                        .area idata
+ 0411 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0415                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0415                   .blkb 4
+                        .area idata
+ 0415 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0419                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0419                   .blkb 4
+                        .area idata
+ 0419 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 041D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 041D                   .blkb 4
+                        .area idata
+ 041D 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0421                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0421                   .blkb 4
+                        .area idata
+ 0421 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0425                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0425                   .blkb 4
+                        .area idata
+ 0425 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0429                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0429                   .blkb 4
+                        .area idata
+ 0429 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 042D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 042D                   .blkb 4
+                        .area idata
+ 042D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0431                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0431                   .blkb 4
+                        .area idata
+ 0431 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 0435                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0435                   .blkb 4
+                        .area idata
+ 0435 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0439                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0439                   .blkb 4
+                        .area idata
+ 0439 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 043D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 043D                   .blkb 4
+                        .area idata
+ 043D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0441                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0441                   .blkb 4
+                        .area idata
+ 0441 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0445                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0445                   .blkb 4
+                        .area idata
+ 0445 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0449                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0449                   .blkb 4
+                        .area idata
+ 0449 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 044D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 044D                   .blkb 4
+                        .area idata
+ 044D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0451                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0451                   .blkb 4
+                        .area idata
+ 0451 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0455                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0455                   .blkb 4
+                        .area idata
+ 0455 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0459                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0459                   .blkb 4
+                        .area idata
+ 0459 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 045D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 045D                   .blkb 4
+                        .area idata
+ 045D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0461                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0461                   .blkb 4
+                        .area idata
+ 0461 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0465                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0465                   .blkb 4
+                        .area idata
+ 0465 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0469                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0469                   .blkb 4
+                        .area idata
+ 0469 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 046D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 046D                   .blkb 4
+                        .area idata
+ 046D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0471                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0471                   .blkb 4
+                        .area idata
+ 0471 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0475                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0475                   .blkb 4
+                        .area idata
+ 0475 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0479                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0479                   .blkb 4
+                        .area idata
+ 0479 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 047D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 047D                   .blkb 4
+                        .area idata
+ 047D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0481                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0481                   .blkb 4
+                        .area idata
+ 0481 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 0485                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0485                   .blkb 4
+                        .area idata
+ 0485 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0489                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0489                   .blkb 4
+                        .area idata
+ 0489 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 048D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 048D                   .blkb 4
+                        .area idata
+ 048D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0491                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0491                   .blkb 4
+                        .area idata
+ 0491 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 0495                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0495                   .blkb 4
+                        .area idata
+ 0495 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0499                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0499                   .blkb 4
+                        .area idata
+ 0499 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 049D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 049D                   .blkb 4
+                        .area idata
+ 049D 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 04A1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04A1                   .blkb 4
+                        .area idata
+ 04A1 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 04A5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04A5                   .blkb 4
+                        .area idata
+ 04A5 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 04A9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04A9                   .blkb 4
+                        .area idata
+ 04A9 0000D041          .word 0x0,0x41d0
+                        .area data(ram, con, rel)
+ 04AD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04AD                   .blkb 4
+                        .area idata
+ 04AD 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 04B1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04B1                   .blkb 4
+                        .area idata
+ 04B1 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 04B5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04B5                   .blkb 4
+                        .area idata
+ 04B5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 04B9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04B9                   .blkb 4
+                        .area idata
+ 04B9 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 04BD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04BD                   .blkb 4
+                        .area idata
+ 04BD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 04C1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04C1                   .blkb 4
+                        .area idata
+ 04C1 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 04C5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04C5                   .blkb 4
+                        .area idata
+ 04C5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 04C9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04C9                   .blkb 4
+                        .area idata
+ 04C9 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 04CD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04CD                   .blkb 4
+                        .area idata
+ 04CD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 04D1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04D1                   .blkb 4
+                        .area idata
+ 04D1 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 04D5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04D5                   .blkb 4
+                        .area idata
+ 04D5 0000403F          .word 0x0,0x3f40
+                        .area data(ram, con, rel)
+ 04D9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04D9                   .blkb 4
+                        .area idata
+ 04D9 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 04DD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04DD                   .blkb 4
+                        .area idata
+ 04DD 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 04E1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04E1                   .blkb 4
+                        .area idata
+ 04E1 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 04E5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04E5                   .blkb 4
+                        .area idata
+ 04E5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 04E9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04E9                   .blkb 4
+                        .area idata
+ 04E9 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 04ED                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04ED                   .blkb 4
+                        .area idata
+ 04ED 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 04F1                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04F1                   .blkb 4
+                        .area idata
+ 04F1 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 04F5                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04F5                   .blkb 4
+                        .area idata
+ 04F5 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 04F9                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04F9                   .blkb 4
+                        .area idata
+ 04F9 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 04FD                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 04FD                   .blkb 4
+                        .area idata
+ 04FD 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0501                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0501                   .blkb 4
+                        .area idata
+ 0501 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0505                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0505                   .blkb 4
+                        .area idata
+ 0505 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0509                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0509                   .blkb 4
+                        .area idata
+ 0509 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 050D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 050D                   .blkb 4
+                        .area idata
+ 050D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0511                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0511                   .blkb 4
+                        .area idata
+ 0511 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0515                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0515                   .blkb 4
+                        .area idata
+ 0515 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0519                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0519                   .blkb 4
+                        .area idata
+ 0519 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 051D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 051D                   .blkb 4
+                        .area idata
+ 051D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0521                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0521                   .blkb 4
+                        .area idata
+ 0521 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 0525                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0525                   .blkb 4
+                        .area idata
+ 0525 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0529                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0529                   .blkb 4
+                        .area idata
+ 0529 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 052D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 052D                   .blkb 4
+                        .area idata
+ 052D 0000403F          .word 0x0,0x3f40
+                        .area data(ram, con, rel)
+ 0531                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0531                   .blkb 4
+                        .area idata
+ 0531 0000C040          .word 0x0,0x40c0
+                        .area data(ram, con, rel)
+ 0535                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0535                   .blkb 4
+                        .area idata
+ 0535 0000803E          .word 0x0,0x3e80
+                        .area data(ram, con, rel)
+ 0539                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0539                   .blkb 4
+                        .area idata
+ 0539 0000A040          .word 0x0,0x40a0
+                        .area data(ram, con, rel)
+ 053D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 053D                   .blkb 4
+                        .area idata
+ 053D 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0541                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0541                   .blkb 4
+                        .area idata
+ 0541 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0545                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0545                   .blkb 4
+                        .area idata
+ 0545 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0549                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0549                   .blkb 4
+                        .area idata
+ 0549 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 054D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 054D                   .blkb 4
+                        .area idata
+ 054D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0551                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0551                   .blkb 4
+                        .area idata
+ 0551 00000040          .word 0x0,0x4000
+                        .area data(ram, con, rel)
+ 0555                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0555                   .blkb 4
+                        .area idata
+ 0555 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0559                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0559                   .blkb 4
+                        .area idata
+ 0559 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 055D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 055D                   .blkb 4
+                        .area idata
+ 055D 0000003F          .word 0x0,0x3f00
+                        .area data(ram, con, rel)
+ 0561                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0561                   .blkb 4
+                        .area idata
+ 0561 0000803F          .word 0x0,0x3f80
+                        .area data(ram, con, rel)
+ 0565                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0565                   .blkb 4
+                        .area idata
+ 0565 00004040          .word 0x0,0x4040
+                        .area data(ram, con, rel)
+ 0569                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0569                   .blkb 4
+                        .area idata
+ 0569 0000F041          .word 0x0,0x41f0
+                        .area data(ram, con, rel)
+ 056D                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 056D                   .blkb 4
+                        .area idata
+ 056D 0000F041          .word 0x0,0x41f0
+                        .area data(ram, con, rel)
+ 0571                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0571                   .blkb 264
+                        .area idata
+ 0571 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 05AD 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 05E9 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0625 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0661 00000000000000000000      .word 0,0,0,0,0
+ 066B 00000000000000000000      .word 0,0,0,0,0
+ 0675 00000000          .byte 0,0,0,0
+                        .area data(ram, con, rel)
+ 0679                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0679                   .dbsym e YueGuangXiaDeFengWeiZhu _YueGuangXiaDeFengWeiZhu A[800:100:2]D
+ 0679           _N25::
+ 0679                   .blkb 73
+                        .area idata
+ 0679 23342050313535342023382050313338  .byte 35,52,32,'P,49,53,53,52,32,35,56,32,'P,49,51,56
+ 0689 34202331322050313930302023313620  .byte 52,32,35,49,50,32,'P,49,57,48,48,32,35,49,54,32
+ 0699 50313231332023323020503135303820  .byte 'P,49,50,49,51,32,35,50,48,32,'P,49,53,48,56,32
+ 06A9 23323420503134313520233238205031  .byte 35,50,52,32,'P,49,52,49,53,32,35,50,56,32,'P,49
+ 06B9 363330205431303000        .byte 54,51,48,32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 06C2                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 06C2                   .dbsym e N25 _N25 A[73:73]c
+ 06C2           _N26::
+ 06C2                   .blkb 73
+                        .area idata
+ 06C2 23342050313038392023382050313338  .byte 35,52,32,'P,49,48,56,57,32,35,56,32,'P,49,51,56
+ 06D2 34202331322050313930302023313620  .byte 52,32,35,49,50,32,'P,49,57,48,48,32,35,49,54,32
+ 06E2 50313231332023323020503135303820  .byte 'P,49,50,49,51,32,35,50,48,32,'P,49,53,48,56,32
+ 06F2 23323420503134313520233238205031  .byte 35,50,52,32,'P,49,52,49,53,32,35,50,56,32,'P,49
+ 0702 363330205431303000        .byte 54,51,48,32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 070B                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 070B                   .dbsym e N26 _N26 A[73:73]c
+ 070B           _N27::
+ 070B                   .blkb 72
+                        .area idata
+ 070B 23342050313038392023382050383537  .byte 35,52,32,'P,49,48,56,57,32,35,56,32,'P,56,53,55
+ 071B 20233132205031393030202331362050  .byte 32,35,49,50,32,'P,49,57,48,48,32,35,49,54,32,'P
+ 072B 31323133202332302050313530382023  .byte 49,50,49,51,32,35,50,48,32,'P,49,53,48,56,32,35
+ 073B 32342050313431352023323820503136  .byte 50,52,32,'P,49,52,49,53,32,35,50,56,32,'P,49,54
+ 074B 3330205431303000  .byte 51,48,32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 0753                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0753                   .dbsym e N27 _N27 A[72:72]c
+ 0753           _N1::
+ 0753                   .blkb 72
+                        .area idata
+ 0753 23342050313038392023382050383537  .byte 35,52,32,'P,49,48,56,57,32,35,56,32,'P,56,53,55
+ 0763 20233132205031353233202331362050  .byte 32,35,49,50,32,'P,49,53,50,51,32,35,49,54,32,'P
+ 0773 31323133202332302050313530382023  .byte 49,50,49,51,32,35,50,48,32,'P,49,53,48,56,32,35
+ 0783 32342050313431352023323820503136  .byte 50,52,32,'P,49,52,49,53,32,35,50,56,32,'P,49,54
+ 0793 3330205431303000  .byte 51,48,32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 079B                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 079B                   .dbsym e N1 _N1 A[72:72]c
+ 079B           _N2::
+ 079B                   .blkb 71
+                        .area idata
+ 079B 23342050313038392023382050383537  .byte 35,52,32,'P,49,48,56,57,32,35,56,32,'P,56,53,55
+ 07AB 20233132205031353233202331362050  .byte 32,35,49,50,32,'P,49,53,50,51,32,35,49,54,32,'P
+ 07BB 38383820233230205031353038202332  .byte 56,56,56,32,35,50,48,32,'P,49,53,48,56,32,35,50
+ 07CB 34205031343135202332382050313633  .byte 52,32,'P,49,52,49,53,32,35,50,56,32,'P,49,54,51
+ 07DB 30205431303000    .byte 48,32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 07E2                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 07E2                   .dbsym e N2 _N2 A[71:71]c
+ 07E2           _N3::
+ 07E2                   .blkb 71
+                        .area idata
+ 07E2 23342050313038392023382050383537  .byte 35,52,32,'P,49,48,56,57,32,35,56,32,'P,56,53,55
+ 07F2 20233132205031353233202331362050  .byte 32,35,49,50,32,'P,49,53,50,51,32,35,49,54,32,'P
+ 0802 38383820233230205031303538202332  .byte 56,56,56,32,35,50,48,32,'P,49,48,53,56,32,35,50
+ 0812 34205031343135202332382050313633  .byte 52,32,'P,49,52,49,53,32,35,50,56,32,'P,49,54,51
+ 0822 30205431303000    .byte 48,32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 0829                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0829                   .dbsym e N3 _N3 A[71:71]c
+ 0829           _N4::
+ 0829                   .blkb 73
+                        .area idata
+ 0829 23342050313535342023382050313338  .byte 35,52,32,'P,49,53,53,52,32,35,56,32,'P,49,51,56
+ 0839 34202331322050313930302023313620  .byte 52,32,35,49,50,32,'P,49,57,48,48,32,35,49,54,32
+ 0849 50313231332023323020503135303820  .byte 'P,49,50,49,51,32,35,50,48,32,'P,49,53,48,56,32
+ 0859 23323420503131313620233238205031  .byte 35,50,52,32,'P,49,49,49,54,32,35,50,56,32,'P,49
+ 0869 363330205431303000        .byte 54,51,48,32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 0872                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0872                   .dbsym e N4 _N4 A[73:73]c
+ 0872           _N5::
+ 0872                   .blkb 70
+                        .area idata
+ 0872 23342050313038392023382050383537  .byte 35,52,32,'P,49,48,56,57,32,35,56,32,'P,56,53,55
+ 0882 20233132205031353233202331362050  .byte 32,35,49,50,32,'P,49,53,50,51,32,35,49,54,32,'P
+ 0892 38383820233230205031303538202332  .byte 56,56,56,32,35,50,48,32,'P,49,48,53,56,32,35,50
+ 08A2 34205039393620233238205031363330  .byte 52,32,'P,57,57,54,32,35,50,56,32,'P,49,54,51,48
+ 08B2 205431303000      .byte 32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 08B8                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 08B8                   .dbsym e N5 _N5 A[70:70]c
+ 08B8           _N6::
+ 08B8                   .blkb 70
+                        .area idata
+ 08B8 23342050313038392023382050383537  .byte 35,52,32,'P,49,48,56,57,32,35,56,32,'P,56,53,55
+ 08C8 20233132205031353233202331362050  .byte 32,35,49,50,32,'P,49,53,50,51,32,35,49,54,32,'P
+ 08D8 38383820233230205031303538202332  .byte 56,56,56,32,35,50,48,32,'P,49,48,53,56,32,35,50
+ 08E8 34205039393620233238205031383333  .byte 52,32,'P,57,57,54,32,35,50,56,32,'P,49,56,51,51
+ 08F8 205431303000      .byte 32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 08FE                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 08FE                   .dbsym e N6 _N6 A[70:70]c
+ 08FE           _All_Rise::
+ 08FE                   .blkb 70
+                        .area idata
+ 08FE 23342050313038392023382050383537  .byte 35,52,32,'P,49,48,56,57,32,35,56,32,'P,56,53,55
+ 090E 20233132205031353233202331362050  .byte 32,35,49,50,32,'P,49,53,50,51,32,35,49,54,32,'P
+ 091E 38383820233230205031303538202332  .byte 56,56,56,32,35,50,48,32,'P,49,48,53,56,32,35,50
+ 092E 34205039393620233238205031383333  .byte 52,32,'P,57,57,54,32,35,50,56,32,'P,49,56,51,51
+ 093E 205431303000      .byte 32,'T,49,48,48,0
+                        .area data(ram, con, rel)
+ 0944                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0944                   .dbsym e All_Rise _All_Rise A[70:70]c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0000                   .dbfunc e delay _delay fV
+ 0000           ;              i -> R20,R21
+ 0000           ;              j -> R22,R23
+ 0000           ;             ms -> R16,R17
+                        .even
+ 0000           _delay::
+ 0000 0E940000          xcall push_xgsetF000
+ 0004                   .dbline -1
+ 0004                   .dbline 96
+ 0004           ; /*
+ 0004           ; 
+ 0004           ; ----------【硬件配置说明】↓--------------------------------------------------
+ 0004           ; //UART0:[MCU - SPEAKING MODULE]BAUD 9600, DC 5V，RXD0-PE0, TXD0-PE1
+ 0004           ; //UART1:[MCU - MOTOR BOARD] BAUD 9600, DC 5V, RXD1-PD2, TXD1-PD3
+ 0004           ; 
+ 0004           ; 
+ 0004           ; ----------【单片机管脚连接说明说明】↓--------------------------------------------------
+ 0004           ; 语音模块(UART0)：TXD-E0(MCU.RXD0)
+ 0004           ; 舵机控制板(UART1):RXD-D3(MCU.TXD1)
+ 0004           ; 继电器模块:IN1-A1→电磁换向阀, IN2-A2→电气比例阀
+ 0004           ; */
+ 0004           ; 
+ 0004           ; //----------【头文件】↓--------------------------------------------------------
+ 0004           ; #include <iom128v.h>
+ 0004           ; #include <macros.h>
+ 0004           ; #include <string.h>
+ 0004           ; 
+ 0004           ; //----------【宏定义】↓--------------------------------------------------------
+ 0004           ; #define  uchar unsigned char
+ 0004           ; #define  uint  unsigned int
+ 0004           ; #define  mclk   8000000 //时钟频率8.0MHz
+ 0004           ; 
+ 0004           ; 
+ 0004           ; //----------【全局变量定义】↓--------------------------------------------------
+ 0004           ; uchar uart0_received_byte;//UART0每次接收到的单字节信息
+ 0004           ; uchar uart0_received_flag=0;
+ 0004           ; 
+ 0004           ; uchar Note_end=0X0D;//0X0d means <cr> 
+ 0004           ; uchar Note_test1[]="#0 P750 T100";
+ 0004           ; uchar Note_test2[]="#0 P1450 T100";
+ 0004           ; uchar Note_test3[]={0X23, 0X30, 0X20, 0X50, 0X31, 0X30, 0X30, 0X30, 0X20, 0X54, 0X31, 0X30, 0X30, 0X0d};
+ 0004           ; uchar Note_test4[]={0X23, 0X30, 0X20, 0X50, 0X32, 0X30, 0X30, 0X30, 0X20, 0X54, 0X31, 0X30, 0X30, 0X0d};
+ 0004           ; 
+ 0004           ; //---------------------------【乐曲保存区域】↓---------------------------------
+ 0004           ; 
+ 0004           ; //康定情歌
+ 0004           ; float KangDingQingGe[100][2]={
+ 0004           ; {3,0.5},{5,0.5},{6,0.5},{6,0.25},{5,0.5},{6,0.5},{3,0.5},{2,1},
+ 0004           ; {3,0.5},{5,0.5},{6,0.5},{6,0.25},{5,0.25},{6,0.5},{3,0.5},{3,1},
+ 0004           ; {3,0.5},{5,0.5},{6,0.5},{6,0.25},{5,0.25},{6,0.5},{3,0.5},{2,1},
+ 0004           ; {5,0.5},{3,0.5},{2,0.25},{3,0.25},{2,0.25},{1,0.25},{2,0.5},{26,0.5},{26,1},
+ 0004           ; {26,0.5},{2,0.5},{2,1},{5,0.5},{3,0.5},{3,1},{2,0.25},{1,0.25},{26,0.5},{26,1},
+ 0004           ; {5,0.5},{3,0.5},{2,0.25},{3,0.25},{2,0.25},{1,0.25},{2,0.5},{26,0.5},{26,1},
+ 0004           ; {5,0.5},{3,0.5},{2,0.25},{3,0.25},{2,0.25},{1,0.25},{2,0.5},{6,0.5},{6,1},
+ 0004           ; {30,30}};
+ 0004           ; 
+ 0004           ; //月光下的凤尾竹
+ 0004           ; float YueGuangXiaDeFengWeiZhu[100][2]={
+ 0004           ; {1,0.5},{26,0.5},{26,0.5},{1,0.5},{1,1},
+ 0004           ; {1,0.5},{2,0.5},{2,0.5},{3,0.5},{3,1},
+ 0004           ; {3,0.5},{2,0.5},{2,0.5},{1,0.5},{1,0.5},{26,0.5},
+ 0004           ; {1,2},{2,0.5},{1,0.5},{26,2},
+ 0004           ; {1,0.5},{1,0.5},{2,0.5},{3,0.5},{3,1},
+ 0004           ; {3,0.5},{1,0.5},{2,0.5},{3,0.5},{3,1},
+ 0004           ; {5,0.5},{1,0.5},{2,0.5},{3,0.5},{3,0.5},{3,0.5},
+ 0004           ; {3,0.5},{26,0.5},{1,0.5},{2,0.5},{2,1},
+ 0004           ; {3,1},{26,1},
+ 0004           ; {1,0.5},{1,0.5},{2,0.5},{3,0.5},{3,0.75},{3,0.25},
+ 0004           ; {5,0.5},{1,0.5},{2,0.5},{3,0.5},{3,1},
+ 0004           ; {5,0.5},{3,0.5},{5,0.5},{6,0.5},{6,0.75},{6,0.25},
+ 0004           ; {5,1},{1,0.5},{3,0.5},{2,0.5},{1,0.5},{1,3},
+ 0004           ; {30,30}};
+ 0004           ; 
+ 0004           ; 
+ 0004           ; //傣族民歌
+ 0004           ; /*
+ 0004           ; float DaiZuMinGe[100][2]={
+ 0004           ; {1,0.5},{2,0.5},{5,1},{3,2},{3,1.5},{5,0.5},{5,1},{3,0.5},{5,0.5},
+ 0004           ; {1,1},{1,0.5},{2,0.5},{1,0.5},{26,0.5},{1,0.5},{2,0.5},{1,1},{3,0.5},{5,0.5},{1,0.5},{2,0.5},{3,0.5},{5,0.5},
+ 0004           ; {,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},{,},
+ 0004           ; }*/
+ 0004           ; //太阳
+ 0004           ; 
+ 0004           ; 
+ 0004           ; 
+ 0004           ; //---------------------------【音符指法指令保存区域】↓---------------------------------
+ 0004           ; //从低音5到中音6
+ 0004           ; char N25[]="#4 P1554 #8 P1384 #12 P1900 #16 P1213 #20 P1508 #24 P1415 #28 P1630 T100";//72字符
+ 0004           ; char N26[]="#4 P1089 #8 P1384 #12 P1900 #16 P1213 #20 P1508 #24 P1415 #28 P1630 T100";//72字符
+ 0004           ; char N27[]="#4 P1089 #8 P857 #12 P1900 #16 P1213 #20 P1508 #24 P1415 #28 P1630 T100";//71字符
+ 0004           ;  char N1[]="#4 P1089 #8 P857 #12 P1523 #16 P1213 #20 P1508 #24 P1415 #28 P1630 T100";//71字符
+ 0004           ;  char N2[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1508 #24 P1415 #28 P1630 T100";//70字符
+ 0004           ;  char N3[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1058 #24 P1415 #28 P1630 T100";//70字符
+ 0004           ;  char N4[]="#4 P1554 #8 P1384 #12 P1900 #16 P1213 #20 P1508 #24 P1116 #28 P1630 T100";//72字符
+ 0004           ;  char N5[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1058 #24 P996 #28 P1630 T100";//69字符
+ 0004           ;  char N6[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1058 #24 P996 #28 P1833 T100";//69字符
+ 0004           ; //演奏结束后抬起手指
+ 0004           ; char All_Rise[]="#4 P1089 #8 P857 #12 P1523 #16 P888 #20 P1058 #24 P996 #28 P1833 T100";//69字符=N6[]
+ 0004           ; 
+ 0004           ; 
+ 0004           ; //--------------【软件延时函数】------------------------------------------------
+ 0004           ; 
+ 0004           ; //延时函数，参数为要延时的毫秒数
+ 0004           ; void delay(uint ms)
+ 0004           ; {
+ 0004                   .dbline 98
+ 0004           ;     uint i,j;
+ 0004           ;       for(i=0;i<ms;i++)
+ 0004 4427              clr R20
+ 0006 5527              clr R21
+ 0008 0BC0              xjmp L5
+ 000A           L2:
+ 000A                   .dbline 99
+ 000A           ;       {
+ 000A                   .dbline 100
+ 000A           ;        for(j=0;j<2000;j++);
+ 000A 6627              clr R22
+ 000C 7727              clr R23
+ 000E 02C0              xjmp L9
+ 0010           L6:
+ 0010                   .dbline 100
+ 0010           L7:
+ 0010                   .dbline 100
+ 0010 6F5F              subi R22,255  ; offset = 1
+ 0012 7F4F              sbci R23,255
+ 0014           L9:
+ 0014                   .dbline 100
+ 0014 603D              cpi R22,208
+ 0016 E7E0              ldi R30,7
+ 0018 7E07              cpc R23,R30
+ 001A D0F3              brlo L6
+ 001C           X0:
+ 001C                   .dbline 101
+ 001C           ;     }
+ 001C           L3:
+ 001C                   .dbline 98
+ 001C 4F5F              subi R20,255  ; offset = 1
+ 001E 5F4F              sbci R21,255
+ 0020           L5:
+ 0020                   .dbline 98
+ 0020 4017              cp R20,R16
+ 0022 5107              cpc R21,R17
+ 0024 90F3              brlo L2
+ 0026           X1:
+ 0026                   .dbline -2
+ 0026           L1:
+ 0026                   .dbline 0 ; func end
+ 0026 0C940000          xjmp pop_xgsetF000
+ 002A                   .dbsym r i 20 i
+ 002A                   .dbsym r j 22 i
+ 002A                   .dbsym r ms 16 i
+ 002A                   .dbend
+ 002A                   .dbfunc e I0_init _I0_init fV
+                        .even
+ 002A           _I0_init::
+ 002A                   .dbline -1
+ 002A                   .dbline 109
+ 002A           ; }
+ 002A           ; 
+ 002A           ; 
+ 002A           ; //----------【普通IO口相关函数】↓---------------------------------------------------------------
+ 002A           ; 
+ 002A           ; /*IO口初始化函数*/
+ 002A           ; void I0_init(void)
+ 002A           ; {
+ 002A                   .dbline 111
+ 002A           ;     //PA1和PA2设置为输出
+ 002A           ;       DDRA|=BIT(1);
+ 002A D19A              sbi 0x1a,1
+ 002C                   .dbline 112
+ 002C           ;       DDRA|=BIT(2);
+ 002C D29A              sbi 0x1a,2
+ 002E                   .dbline 114
+ 002E           ;       //开始时为低电平
+ 002E           ;       PORTA&=(~BIT(1));
+ 002E D998              cbi 0x1b,1
+ 0030                   .dbline 115
+ 0030           ;       PORTA&=(~BIT(2));
+ 0030 DA98              cbi 0x1b,2
+ 0032                   .dbline -2
+ 0032           L10:
+ 0032                   .dbline 0 ; func end
+ 0032 0895              ret
+ 0034                   .dbend
+ 0034                   .dbfunc e uart0_init _uart0_init fV
+ 0034           ;           baud -> R10,R11
+                        .even
+ 0034           _uart0_init::
+ 0034 0E940000          xcall push_xgsetF00C
+ 0038 5801              movw R10,R16
+ 003A                   .dbline -1
+ 003A                   .dbline 123
+ 003A           ; }
+ 003A           ; 
+ 003A           ; 
+ 003A           ; //----------【UART0的相关函数】↓---------------------------------------------------------------
+ 003A           ; 
+ 003A           ; /*UART0的串口初始化函数*/
+ 003A           ; void uart0_init(uint baud)
+ 003A           ; {
+ 003A                   .dbline 124
+ 003A           ;    UCSR0B=0x00; 
+ 003A 2224              clr R2
+ 003C 2AB8              out 0xa,R2
+ 003E                   .dbline 125
+ 003E           ;    UCSR0A=0x00;                  //控制寄存器清零
+ 003E 2BB8              out 0xb,R2
+ 0040                   .dbline 126
+ 0040           ;    UCSR0C=(0<<UPM00)|(3<<UCSZ00); //选择UCSRC，异步模式，禁止校验，1位停止位，8位数据位                       
+ 0040 86E0              ldi R24,6
+ 0042 80939500          sts 149,R24
+ 0046                   .dbline 128
+ 0046           ;    
+ 0046           ;    baud=mclk/16/baud-1;    //波特率最大为65K
+ 0046 1501              movw R2,R10
+ 0048 4424              clr R4
+ 004A 5524              clr R5
+ 004C 40E2              ldi R20,32
+ 004E 51EA              ldi R21,161
+ 0050 67E0              ldi R22,7
+ 0052 70E0              ldi R23,0
+ 0054 5A92              st -y,R5
+ 0056 4A92              st -y,R4
+ 0058 3A92              st -y,R3
+ 005A 2A92              st -y,R2
+ 005C 8A01              movw R16,R20
+ 005E 9B01              movw R18,R22
+ 0060 0E940000          xcall div32s
+ 0064 41E0              ldi R20,1
+ 0066 50E0              ldi R21,0
+ 0068 60E0              ldi R22,0
+ 006A 70E0              ldi R23,0
+ 006C 1801              movw R2,R16
+ 006E 2901              movw R4,R18
+ 0070 241A              sub R2,R20
+ 0072 350A              sbc R3,R21
+ 0074 460A              sbc R4,R22
+ 0076 570A              sbc R5,R23
+ 0078 5101              movw R10,R2
+ 007A                   .dbline 129
+ 007A           ;    UBRR0L=baud;                                                 
+ 007A 29B8              out 0x9,R2
+ 007C                   .dbline 130
+ 007C           ;    UBRR0H=baud>>8;               //设置波特率
+ 007C 232C              mov R2,R3
+ 007E 3324              clr R3
+ 0080 20929000          sts 144,R2
+ 0084                   .dbline 133
+ 0084           ; 
+ 0084           ;    
+ 0084           ;    UCSR0B|=(1<<RXEN0);
+ 0084 549A              sbi 0xa,4
+ 0086                   .dbline 135
+ 0086           ;    //UCSR0B|=(1<<TXEN0);   //UART0发送使能
+ 0086           ;    UCSR0B|=BIT(RXCIE0);
+ 0086 579A              sbi 0xa,7
+ 0088                   .dbline 136
+ 0088           ;    SREG=BIT(7);                  //全局中断开放
+ 0088 80E8              ldi R24,128
+ 008A 8FBF              out 0x3f,R24
+ 008C                   .dbline -2
+ 008C           L11:
+ 008C                   .dbline 0 ; func end
+ 008C 0C940000          xjmp pop_xgsetF00C
+ 0090                   .dbsym r baud 10 i
+ 0090                   .dbend
+                        .area vector(rom, abs)
+                        .org 72
+ 0048 0C944800          jmp _UART0_Receive_Byte
+                        .area text(rom, con, rel)
+ 0090                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0090                   .dbfunc e UART0_Receive_Byte _UART0_Receive_Byte fV
+                        .even
+ 0090           _UART0_Receive_Byte::
+ 0090 2A92              st -y,R2
+ 0092 8A93              st -y,R24
+ 0094 2FB6              IN R2,63
+ 0096 2A92              st -y,R2
+ 0098                   .dbline -1
+ 0098                   .dbline 163
+ 0098           ;    //DDRE|=BIT(1);               //配置TX为输出（很重要）
+ 0098           ; }
+ 0098           ; 
+ 0098           ; /*UART0的串口发送函数，每次发送一个字节（Byte）*//*
+ 0098           ; void UART0_Send_Byte(uchar data)
+ 0098           ; {
+ 0098           ;    while(!(UCSR0A&(BIT(UDRE0))));//判断准备就绪否
+ 0098           ;    UDR0=data;
+ 0098           ;    while(!(UCSR0A&(BIT(TXC0))));//判断完成发送否
+ 0098           ;    UCSR0A|=BIT(TXC0);//TXC0标志位手动清零，通过将TXC0置1实现
+ 0098           ; }*/
+ 0098           ; 
+ 0098           ; /*UART0字符串发送函数*//*
+ 0098           ; void UART0_Send_String(uchar *str_send,uchar str_num)//形参：待发送字符串
+ 0098           ; {
+ 0098           ;        uchar i=0;
+ 0098           ;        while(i<str_num)
+ 0098           ;        {
+ 0098           ;          UART0_Send_Byte(*(str_send+i));
+ 0098           ;          i+=1;
+ 0098           ;        }
+ 0098           ; }*/
+ 0098           ; #pragma interrupt_handler UART0_Receive_Byte:19
+ 0098           ; 
+ 0098           ; /*UART0的串口接收函数，每次接收一个字节（Byte）*/
+ 0098           ; void UART0_Receive_Byte(void)
+ 0098           ; {     
+ 0098                   .dbline 164
+ 0098           ;       UCSR0B&=~BIT(RXCIE0);//关闭RXCIE0，其余位保持不变
+ 0098 5798              cbi 0xa,7
+ 009A                   .dbline 165
+ 009A           ;       uart0_received_byte=UDR0;
+ 009A 2CB0              in R2,0xc
+ 009C 20920000          sts _uart0_received_byte,R2
+ 00A0                   .dbline 166
+ 00A0           ;       uart0_received_flag=1;
+ 00A0 81E0              ldi R24,1
+ 00A2 80930000          sts _uart0_received_flag,R24
+ 00A6                   .dbline -2
+ 00A6           L12:
+ 00A6                   .dbline 0 ; func end
+ 00A6 2990              ld R2,y+
+ 00A8 2FBE              OUT 63,R2
+ 00AA 8991              ld R24,y+
+ 00AC 2990              ld R2,y+
+ 00AE 1895              reti
+ 00B0                   .dbend
+ 00B0                   .dbfunc e uart1_init _uart1_init fV
+ 00B0           ;           baud -> R10,R11
+                        .even
+ 00B0           _uart1_init::
+ 00B0 0E940000          xcall push_xgsetF00C
+ 00B4 5801              movw R10,R16
+ 00B6                   .dbline -1
+ 00B6                   .dbline 174
+ 00B6           ; }
+ 00B6           ; 
+ 00B6           ; 
+ 00B6           ; //------------【UART1的相关函数】↓-------------------------------------------------------------
+ 00B6           ; 
+ 00B6           ; /*UART1的串口初始化函数*/
+ 00B6           ; void uart1_init(uint baud)
+ 00B6           ; {
+ 00B6                   .dbline 175
+ 00B6           ;     UCSR1B=0x00; 
+ 00B6 2224              clr R2
+ 00B8 20929A00          sts 154,R2
+ 00BC                   .dbline 176
+ 00BC           ;     UCSR1A=0x00;                 //控制寄存器清零
+ 00BC 20929B00          sts 155,R2
+ 00C0                   .dbline 177
+ 00C0           ;     UCSR1C=(0<<UPM10)|(3<<UCSZ10); //选择UCSRC，异步模式，禁止校验，1位停止位，8位数据位                       
+ 00C0 86E0              ldi R24,6
+ 00C2 80939D00          sts 157,R24
+ 00C6                   .dbline 179
+ 00C6           ;    
+ 00C6           ;     baud=mclk/16/baud-1;    //波特率最大为65K
+ 00C6 1501              movw R2,R10
+ 00C8 4424              clr R4
+ 00CA 5524              clr R5
+ 00CC 40E2              ldi R20,32
+ 00CE 51EA              ldi R21,161
+ 00D0 67E0              ldi R22,7
+ 00D2 70E0              ldi R23,0
+ 00D4 5A92              st -y,R5
+ 00D6 4A92              st -y,R4
+ 00D8 3A92              st -y,R3
+ 00DA 2A92              st -y,R2
+ 00DC 8A01              movw R16,R20
+ 00DE 9B01              movw R18,R22
+ 00E0 0E940000          xcall div32s
+ 00E4 41E0              ldi R20,1
+ 00E6 50E0              ldi R21,0
+ 00E8 60E0              ldi R22,0
+ 00EA 70E0              ldi R23,0
+ 00EC 1801              movw R2,R16
+ 00EE 2901              movw R4,R18
+ 00F0 241A              sub R2,R20
+ 00F2 350A              sbc R3,R21
+ 00F4 460A              sbc R4,R22
+ 00F6 570A              sbc R5,R23
+ 00F8 5101              movw R10,R2
+ 00FA                   .dbline 180
+ 00FA           ;     UBRR1L=baud;                                                
+ 00FA A0929900          sts 153,R10
+ 00FE                   .dbline 181
+ 00FE           ;     UBRR1H=baud>>8;              //设置波特率
+ 00FE 232C              mov R2,R3
+ 0100 3324              clr R3
+ 0102 20929800          sts 152,R2
+ 0106                   .dbline 183
+ 0106           ;    
+ 0106           ;     UCSR1B|=(1<<TXEN1)|(1<<RXCIE1);   //接收、发送使能，接收中断使能 |(1<<RXEN1)
+ 0106 80919A00          lds R24,154
+ 010A 8868              ori R24,136
+ 010C 80939A00          sts 154,R24
+ 0110                   .dbline 184
+ 0110           ;     SREG=BIT(7);                 //全局中断开放
+ 0110 80E8              ldi R24,128
+ 0112 8FBF              out 0x3f,R24
+ 0114                   .dbline 185
+ 0114           ;     DDRD|=BIT(3);                //配置TX为输出（很重要）
+ 0114 8B9A              sbi 0x11,3
+ 0116                   .dbline -2
+ 0116           L13:
+ 0116                   .dbline 0 ; func end
+ 0116 0C940000          xjmp pop_xgsetF00C
+ 011A                   .dbsym r baud 10 i
+ 011A                   .dbend
+ 011A                   .dbfunc e UART1_SendB _UART1_SendB fV
+ 011A           ;           data -> R16
+                        .even
+ 011A           _UART1_SendB::
+ 011A                   .dbline -1
+ 011A                   .dbline 191
+ 011A           ; }
+ 011A           ; 
+ 011A           ; 
+ 011A           ; /*UART1的串口发送函数，每次发送一个字节（Byte）*/
+ 011A           ; void UART1_SendB(uchar data)
+ 011A           ; {
+ 011A           L15:
+ 011A                   .dbline 192
+ 011A           ;    while(!(UCSR1A&(BIT(UDRE1))));//判断准备就绪否
+ 011A           L16:
+ 011A                   .dbline 192
+ 011A 20909B00          lds R2,155
+ 011E 25FE              sbrs R2,5
+ 0120 FCCF              rjmp L15
+ 0122           X2:
+ 0122                   .dbline 193
+ 0122           ;    UDR1=data;
+ 0122 00939C00          sts 156,R16
+ 0126           L18:
+ 0126                   .dbline 194
+ 0126           ;    while(!(UCSR1A&(BIT(TXC1))));//判断完成发送否
+ 0126           L19:
+ 0126                   .dbline 194
+ 0126 20909B00          lds R2,155
+ 012A 26FE              sbrs R2,6
+ 012C FCCF              rjmp L18
+ 012E           X3:
+ 012E                   .dbline 195
+ 012E           ;    UCSR1A|=BIT(TXC1);//TXC1标志位手动清零，通过将TXC1置1实现
+ 012E 80919B00          lds R24,155
+ 0132 8064              ori R24,64
+ 0134 80939B00          sts 155,R24
+ 0138                   .dbline -2
+ 0138           L14:
+ 0138                   .dbline 0 ; func end
+ 0138 0895              ret
+ 013A                   .dbsym r data 16 c
+ 013A                   .dbend
+ 013A                   .dbfunc e UART1_Send_String _UART1_Send_String fV
+ 013A           ;              i -> R10
+ 013A           ;        str_num -> R14
+ 013A           ;       str_send -> R12,R13
+                        .even
+ 013A           _UART1_Send_String::
+ 013A 0E940000          xcall push_xgset00FC
+ 013E E22E              mov R14,R18
+ 0140 6801              movw R12,R16
+ 0142                   .dbline -1
+ 0142                   .dbline 200
+ 0142           ; }
+ 0142           ; 
+ 0142           ; /*UART1字符串发送函数*/
+ 0142           ; void UART1_Send_String(uchar *str_send,uchar str_num)//形参：待发送字符串
+ 0142           ; {
+ 0142                   .dbline 201
+ 0142           ;        uchar i=0;
+ 0142 AA24              clr R10
+ 0144 0EC0              xjmp L23
+ 0146           L22:
+ 0146                   .dbline 203
+ 0146           ;        while(i<str_num)
+ 0146           ;        {
+ 0146                   .dbline 204
+ 0146           ;            if(*(str_send+i)!=0)
+ 0146 EA2D              mov R30,R10
+ 0148 FF27              clr R31
+ 014A EC0D              add R30,R12
+ 014C FD1D              adc R31,R13
+ 014E 2080              ldd R2,z+0
+ 0150 2220              tst R2
+ 0152 31F0              breq L25
+ 0154           X4:
+ 0154                   .dbline 205
+ 0154           ;                {
+ 0154                   .dbline 206
+ 0154           ;                UART1_SendB(*(str_send+i));
+ 0154 EA2D              mov R30,R10
+ 0156 FF27              clr R31
+ 0158 EC0D              add R30,R12
+ 015A FD1D              adc R31,R13
+ 015C 0081              ldd R16,z+0
+ 015E DDDF              xcall _UART1_SendB
+ 0160                   .dbline 207
+ 0160           ;                }
+ 0160           L25:
+ 0160                   .dbline 209
+ 0160           ;          
+ 0160           ;          i+=1;
+ 0160 A394              inc R10
+ 0162                   .dbline 210
+ 0162           ;        }
+ 0162           L23:
+ 0162                   .dbline 202
+ 0162 AE14              cp R10,R14
+ 0164 80F3              brlo L22
+ 0166           X5:
+ 0166                   .dbline -2
+ 0166           L21:
+ 0166                   .dbline 0 ; func end
+ 0166 0C940000          xjmp pop_xgset00FC
+ 016A                   .dbsym r i 10 c
+ 016A                   .dbsym r str_num 14 c
+ 016A                   .dbsym r str_send 12 pc
+ 016A                   .dbend
+ 016A                   .dbfunc e Play_Music _Play_Music fV
+ 016A           ;           Time -> y+4
+ 016A           ;           Note -> y+0
+ 016A           ;     Note_Index -> R10
+ 016A           ;          Music -> R12,R13
+                        .even
+ 016A           _Play_Music::
+ 016A 0E940000          xcall push_xgset003C
+ 016E 6801              movw R12,R16
+ 0170 2897              sbiw R28,8
+ 0172                   .dbline -1
+ 0172                   .dbline 215
+ 0172           ; }
+ 0172           ; 
+ 0172           ; //---------------------------【乐曲演奏相关函数】↓-----------------------------------------------------------
+ 0172           ; void Play_Music(float Music[100][2])
+ 0172           ; {
+ 0172                   .dbline 216
+ 0172           ;       char Note_Index=0;//指向要演奏的音符
+ 0172 AA24              clr R10
+ 0174                   .dbline 223
+ 0174           ;       float Note;
+ 0174           ;       float Time;
+ 0174           ;       
+ 0174           ;       //电气比例阀打开
+ 0174           ;       
+ 0174           ;       //电磁换向阀打开
+ 0174           ;       Direction_Valve(1);
+ 0174 01E0              ldi R16,1
+ 0176 10E0              ldi R17,0
+ 0178 F3D0              xcall _Direction_Valve
+ 017A                   .dbline 224
+ 017A           ;       delay(300);
+ 017A 0CE2              ldi R16,300
+ 017C 11E0              ldi R17,1
+ 017E 40DF              xcall _delay
+ 0180 36C0              xjmp L29
+ 0182           L28:
+ 0182                   .dbline 228
+ 0182           ;       
+ 0182           ;       //播放乐曲
+ 0182           ;       while(Music[Note_Index][0]!=30)//30表示乐曲结束
+ 0182           ;       {
+ 0182                   .dbline 229
+ 0182           ;               Note=Music[Note_Index][0];
+ 0182 EA2D              mov R30,R10
+ 0184 FF27              clr R31
+ 0186 EE0F              lsl R30
+ 0188 FF1F              rol R31
+ 018A EE0F              lsl R30
+ 018C FF1F              rol R31
+ 018E EE0F              lsl R30
+ 0190 FF1F              rol R31
+ 0192 EC0D              add R30,R12
+ 0194 FD1D              adc R31,R13
+ 0196 2080              ldd R2,z+0
+ 0198 3180              ldd R3,z+1
+ 019A 4280              ldd R4,z+2
+ 019C 5380              ldd R5,z+3
+ 019E 2882              std y+0,R2
+ 01A0 3982              std y+1,R3
+ 01A2 4A82              std y+2,R4
+ 01A4 5B82              std y+3,R5
+ 01A6                   .dbline 230
+ 01A6           ;               Time=Music[Note_Index][1]*660;
+ 01A6 00E0              ldi R16,<L31
+ 01A8 10E0              ldi R17,>L31
+ 01AA 0E940000          xcall elpm32
+ 01AE 8A2D              mov R24,R10
+ 01B0 9927              clr R25
+ 01B2 880F              lsl R24
+ 01B4 991F              rol R25
+ 01B6 880F              lsl R24
+ 01B8 991F              rol R25
+ 01BA 880F              lsl R24
+ 01BC 991F              rol R25
+ 01BE 8C0D              add R24,R12
+ 01C0 9D1D              adc R25,R13
+ 01C2 0496              adiw R24,4
+ 01C4 9A93              st -y,R25
+ 01C6 8A93              st -y,R24
+ 01C8 0E940000          xcall fpmule1
+ 01CC 0C83              std y+4,R16
+ 01CE 1D83              std y+5,R17
+ 01D0 2E83              std y+6,R18
+ 01D2 3F83              std y+7,R19
+ 01D4                   .dbline 231
+ 01D4           ;               Play_Note(Note);
+ 01D4 0881              ldd R16,y+0
+ 01D6 1981              ldd R17,y+1
+ 01D8 2A81              ldd R18,y+2
+ 01DA 3B81              ldd R19,y+3
+ 01DC 31D0              xcall _Play_Note
+ 01DE                   .dbline 232
+ 01DE           ;               delay(Time);
+ 01DE 0C81              ldd R16,y+4
+ 01E0 1D81              ldd R17,y+5
+ 01E2 2E81              ldd R18,y+6
+ 01E4 3F81              ldd R19,y+7
+ 01E6 0E940000          xcall fpint
+ 01EA 0ADF              xcall _delay
+ 01EC                   .dbline 233
+ 01EC           ;               Note_Index++;
+ 01EC A394              inc R10
+ 01EE                   .dbline 234
+ 01EE           ;       }
+ 01EE           L29:
+ 01EE                   .dbline 227
+ 01EE EA2D              mov R30,R10
+ 01F0 FF27              clr R31
+ 01F2 EE0F              lsl R30
+ 01F4 FF1F              rol R31
+ 01F6 EE0F              lsl R30
+ 01F8 FF1F              rol R31
+ 01FA EE0F              lsl R30
+ 01FC FF1F              rol R31
+ 01FE EC0D              add R30,R12
+ 0200 FD1D              adc R31,R13
+ 0202 2080              ldd R2,z+0
+ 0204 3180              ldd R3,z+1
+ 0206 4280              ldd R4,z+2
+ 0208 5380              ldd R5,z+3
+ 020A 00E0              ldi R16,<L32
+ 020C 10E0              ldi R17,>L32
+ 020E 0E940000          xcall elpm32
+ 0212 3A93              st -y,R19
+ 0214 2A93              st -y,R18
+ 0216 1A93              st -y,R17
+ 0218 0A93              st -y,R16
+ 021A 8101              movw R16,R2
+ 021C 9201              movw R18,R4
+ 021E 0E940000          xcall fpcmp2
+ 0222 09F0              breq X7
+ 0224 AECF              xjmp L28
+ 0226           X7:
+ 0226           X6:
+ 0226                   .dbline 237
+ 0226           ;       
+ 0226           ;       //电磁换向阀关闭
+ 0226           ;       Direction_Valve(0);
+ 0226 0027              clr R16
+ 0228 1127              clr R17
+ 022A 9AD0              xcall _Direction_Valve
+ 022C                   .dbline 241
+ 022C           ;       //电气比例阀关闭
+ 022C           ;       
+ 022C           ;       //所有手指抬起
+ 022C           ;       UART1_Send_String(All_Rise,69);
+ 022C 25E4              ldi R18,69
+ 022E 00E0              ldi R16,<_All_Rise
+ 0230 10E0              ldi R17,>_All_Rise
+ 0232 83DF              xcall _UART1_Send_String
+ 0234                   .dbline 242
+ 0234           ;       UART1_SendB(Note_end);
+ 0234 00910100          lds R16,_Note_end
+ 0238 70DF              xcall _UART1_SendB
+ 023A                   .dbline -2
+ 023A           L27:
+ 023A                   .dbline 0 ; func end
+ 023A 2896              adiw R28,8
+ 023C 0C940000          xjmp pop_xgset003C
+ 0240                   .dbsym l Time 4 D
+ 0240                   .dbsym l Note 0 D
+ 0240                   .dbsym r Note_Index 10 c
+ 0240                   .dbsym r Music 12 pA[8:2]D
+ 0240                   .dbend
+ 0240                   .dbfunc e Play_Note _Play_Note fV
+ 0240           ;           Note -> y+2
+                        .even
+ 0240           _Play_Note::
+ 0240 0E940000          xcall push_arg4
+ 0244 4A93              st -y,R20
+ 0246 5A93              st -y,R21
+ 0248                   .dbline -1
+ 0248                   .dbline 246
+ 0248           ; }
+ 0248           ; 
+ 0248           ; void Play_Note(float Note)
+ 0248           ; {
+ 0248                   .dbline 247
+ 0248           ;     switch((char)Note)
+ 0248 0A81              ldd R16,y+2
+ 024A 1B81              ldd R17,y+3
+ 024C 2C81              ldd R18,y+4
+ 024E 3D81              ldd R19,y+5
+ 0250 0E940000          xcall fpint
+ 0254 402F              mov R20,R16
+ 0256 5527              clr R21
+ 0258 4130              cpi R20,1
+ 025A E0E0              ldi R30,0
+ 025C 5E07              cpc R21,R30
+ 025E 09F4              brne X18
+ 0260 2EC0              xjmp L37
+ 0262           X18:
+ 0262           X8:
+ 0262 4230              cpi R20,2
+ 0264 E0E0              ldi R30,0
+ 0266 5E07              cpc R21,R30
+ 0268 09F4              brne X19
+ 026A 31C0              xjmp L38
+ 026C           X19:
+ 026C           X9:
+ 026C 4330              cpi R20,3
+ 026E E0E0              ldi R30,0
+ 0270 5E07              cpc R21,R30
+ 0272 09F4              brne X20
+ 0274 34C0              xjmp L39
+ 0276           X20:
+ 0276           X10:
+ 0276 4430              cpi R20,4
+ 0278 E0E0              ldi R30,0
+ 027A 5E07              cpc R21,R30
+ 027C 09F4              brne X21
+ 027E 37C0              xjmp L40
+ 0280           X21:
+ 0280           X11:
+ 0280 4530              cpi R20,5
+ 0282 E0E0              ldi R30,0
+ 0284 5E07              cpc R21,R30
+ 0286 09F4              brne X22
+ 0288 3AC0              xjmp L41
+ 028A           X22:
+ 028A           X12:
+ 028A 4630              cpi R20,6
+ 028C E0E0              ldi R30,0
+ 028E 5E07              cpc R21,R30
+ 0290 09F4              brne X23
+ 0292 3DC0              xjmp L42
+ 0294           X23:
+ 0294           X13:
+ 0294 4130              cpi R20,1
+ 0296 E0E0              ldi R30,0
+ 0298 5E07              cpc R21,R30
+ 029A 0CF4              brge X24
+ 029C 57C0              xjmp L34
+ 029E           X24:
+ 029E           X14:
+ 029E           L46:
+ 029E 4931              cpi R20,25
+ 02A0 E0E0              ldi R30,0
+ 02A2 5E07              cpc R21,R30
+ 02A4 09F4              brne X25
+ 02A6 3BC0              xjmp L43
+ 02A8           X25:
+ 02A8           X15:
+ 02A8 4A31              cpi R20,26
+ 02AA E0E0              ldi R30,0
+ 02AC 5E07              cpc R21,R30
+ 02AE 09F4              brne X26
+ 02B0 3EC0              xjmp L44
+ 02B2           X26:
+ 02B2           X16:
+ 02B2 4B31              cpi R20,27
+ 02B4 E0E0              ldi R30,0
+ 02B6 5E07              cpc R21,R30
+ 02B8 09F4              brne X27
+ 02BA 41C0              xjmp L45
+ 02BC           X27:
+ 02BC           X17:
+ 02BC 47C0              xjmp L34
+ 02BE           L37:
+ 02BE                   .dbline 250
+ 02BE           ;       {
+ 02BE           ;           case 1://中音1
+ 02BE           ;               {    
+ 02BE                   .dbline 251
+ 02BE           ;                   UART1_Send_String(N1,71);//UART舵机动作指令
+ 02BE 27E4              ldi R18,71
+ 02C0 00E0              ldi R16,<_N1
+ 02C2 10E0              ldi R17,>_N1
+ 02C4 3ADF              xcall _UART1_Send_String
+ 02C6                   .dbline 252
+ 02C6           ;                       UART1_SendB(Note_end);
+ 02C6 00910100          lds R16,_Note_end
+ 02CA 27DF              xcall _UART1_SendB
+ 02CC                   .dbline 253
+ 02CC           ;                       break;
+ 02CC 3FC0              xjmp L35
+ 02CE           L38:
+ 02CE                   .dbline 256
+ 02CE           ;               }
+ 02CE           ;               case 2://中音2
+ 02CE           ;               {
+ 02CE                   .dbline 257
+ 02CE           ;                   UART1_Send_String(N2,70);
+ 02CE 26E4              ldi R18,70
+ 02D0 00E0              ldi R16,<_N2
+ 02D2 10E0              ldi R17,>_N2
+ 02D4 32DF              xcall _UART1_Send_String
+ 02D6                   .dbline 258
+ 02D6           ;                       UART1_SendB(Note_end);
+ 02D6 00910100          lds R16,_Note_end
+ 02DA 1FDF              xcall _UART1_SendB
+ 02DC                   .dbline 259
+ 02DC           ;                       break;
+ 02DC 37C0              xjmp L35
+ 02DE           L39:
+ 02DE                   .dbline 262
+ 02DE           ;               }
+ 02DE           ;               case 3://中音3
+ 02DE           ;               {
+ 02DE                   .dbline 263
+ 02DE           ;                   UART1_Send_String(N3,70);
+ 02DE 26E4              ldi R18,70
+ 02E0 00E0              ldi R16,<_N3
+ 02E2 10E0              ldi R17,>_N3
+ 02E4 2ADF              xcall _UART1_Send_String
+ 02E6                   .dbline 264
+ 02E6           ;                       UART1_SendB(Note_end);
+ 02E6 00910100          lds R16,_Note_end
+ 02EA 17DF              xcall _UART1_SendB
+ 02EC                   .dbline 265
+ 02EC           ;                       break;
+ 02EC 2FC0              xjmp L35
+ 02EE           L40:
+ 02EE                   .dbline 268
+ 02EE           ;               }
+ 02EE           ;               case 4://中音4
+ 02EE           ;               {
+ 02EE                   .dbline 269
+ 02EE           ;                   UART1_Send_String(N4,72);
+ 02EE 28E4              ldi R18,72
+ 02F0 00E0              ldi R16,<_N4
+ 02F2 10E0              ldi R17,>_N4
+ 02F4 22DF              xcall _UART1_Send_String
+ 02F6                   .dbline 270
+ 02F6           ;                       UART1_SendB(Note_end);
+ 02F6 00910100          lds R16,_Note_end
+ 02FA 0FDF              xcall _UART1_SendB
+ 02FC                   .dbline 271
+ 02FC           ;                       break;
+ 02FC 27C0              xjmp L35
+ 02FE           L41:
+ 02FE                   .dbline 274
+ 02FE           ;               }
+ 02FE           ;               case 5://中音5
+ 02FE           ;               {
+ 02FE                   .dbline 275
+ 02FE           ;                   UART1_Send_String(N5,69);
+ 02FE 25E4              ldi R18,69
+ 0300 00E0              ldi R16,<_N5
+ 0302 10E0              ldi R17,>_N5
+ 0304 1ADF              xcall _UART1_Send_String
+ 0306                   .dbline 276
+ 0306           ;                       UART1_SendB(Note_end);
+ 0306 00910100          lds R16,_Note_end
+ 030A 07DF              xcall _UART1_SendB
+ 030C                   .dbline 277
+ 030C           ;                       break;
+ 030C 1FC0              xjmp L35
+ 030E           L42:
+ 030E                   .dbline 280
+ 030E           ;               }
+ 030E           ;               case 6://中音6
+ 030E           ;               {
+ 030E                   .dbline 281
+ 030E           ;                   UART1_Send_String(N6,69);
+ 030E 25E4              ldi R18,69
+ 0310 00E0              ldi R16,<_N6
+ 0312 10E0              ldi R17,>_N6
+ 0314 12DF              xcall _UART1_Send_String
+ 0316                   .dbline 282
+ 0316           ;                       UART1_SendB(Note_end);
+ 0316 00910100          lds R16,_Note_end
+ 031A FFDE              xcall _UART1_SendB
+ 031C                   .dbline 283
+ 031C           ;                       break;
+ 031C 17C0              xjmp L35
+ 031E           L43:
+ 031E                   .dbline 286
+ 031E           ;               }
+ 031E           ;               case 25://低音5
+ 031E           ;               {
+ 031E                   .dbline 287
+ 031E           ;                   UART1_Send_String(N25,72);
+ 031E 28E4              ldi R18,72
+ 0320 00E0              ldi R16,<_N25
+ 0322 10E0              ldi R17,>_N25
+ 0324 0ADF              xcall _UART1_Send_String
+ 0326                   .dbline 288
+ 0326           ;                       UART1_SendB(Note_end);
+ 0326 00910100          lds R16,_Note_end
+ 032A F7DE              xcall _UART1_SendB
+ 032C                   .dbline 289
+ 032C           ;                       break;
+ 032C 0FC0              xjmp L35
+ 032E           L44:
+ 032E                   .dbline 292
+ 032E           ;               }
+ 032E           ;               case 26://低音6
+ 032E           ;               {
+ 032E                   .dbline 293
+ 032E           ;                   UART1_Send_String(N26,72);
+ 032E 28E4              ldi R18,72
+ 0330 00E0              ldi R16,<_N26
+ 0332 10E0              ldi R17,>_N26
+ 0334 02DF              xcall _UART1_Send_String
+ 0336                   .dbline 294
+ 0336           ;                       UART1_SendB(Note_end);
+ 0336 00910100          lds R16,_Note_end
+ 033A EFDE              xcall _UART1_SendB
+ 033C                   .dbline 295
+ 033C           ;                       break;
+ 033C 07C0              xjmp L35
+ 033E           L45:
+ 033E                   .dbline 298
+ 033E           ;               }
+ 033E           ;               case 27://低音7
+ 033E           ;               {
+ 033E                   .dbline 299
+ 033E           ;                   UART1_Send_String(N27,71);
+ 033E 27E4              ldi R18,71
+ 0340 00E0              ldi R16,<_N27
+ 0342 10E0              ldi R17,>_N27
+ 0344 FADE              xcall _UART1_Send_String
+ 0346                   .dbline 300
+ 0346           ;                       UART1_SendB(Note_end);
+ 0346 00910100          lds R16,_Note_end
+ 034A E7DE              xcall _UART1_SendB
+ 034C                   .dbline 301
+ 034C           ;                       break;
+ 034C           L34:
+ 034C           L35:
+ 034C                   .dbline -2
+ 034C           L33:
+ 034C                   .dbline 0 ; func end
+ 034C 5991              ld R21,y+
+ 034E 4991              ld R20,y+
+ 0350 2496              adiw R28,4
+ 0352 0895              ret
+ 0354                   .dbsym l Note 2 D
+ 0354                   .dbend
+ 0354                   .dbfunc e Numeric_Valve _Numeric_Valve fV
+ 0354           ;          state -> R16
+                        .even
+ 0354           _Numeric_Valve::
+ 0354                   .dbline -1
+ 0354                   .dbline 310
+ 0354           ;               }                                                                       
+ 0354           ;       }    
+ 0354           ; }
+ 0354           ; 
+ 0354           ; 
+ 0354           ; //---------------------------【继电器模块控制相关函数】↓----------------------------------------------------
+ 0354           ; 
+ 0354           ; void Numeric_Valve(uchar state)//电气比例阀
+ 0354           ; {
+ 0354                   .dbline 311
+ 0354           ;     if(state)
+ 0354 0023              tst R16
+ 0356 11F0              breq L48
+ 0358           X28:
+ 0358                   .dbline 312
+ 0358           ;       {
+ 0358                   .dbline 314
+ 0358           ;           //打开电气比例阀
+ 0358           ;               PORTA|=BIT(2);//PA2=1
+ 0358 DA9A              sbi 0x1b,2
+ 035A                   .dbline 315
+ 035A           ;       }
+ 035A 01C0              xjmp L49
+ 035C           L48:
+ 035C                   .dbline 317
+ 035C           ;       else
+ 035C           ;       {
+ 035C                   .dbline 319
+ 035C           ;           //关闭电气比例阀
+ 035C           ;               PORTA&=(~BIT(2));//PA2=0
+ 035C DA98              cbi 0x1b,2
+ 035E                   .dbline 320
+ 035E           ;       }
+ 035E           L49:
+ 035E                   .dbline -2
+ 035E           L47:
+ 035E                   .dbline 0 ; func end
+ 035E 0895              ret
+ 0360                   .dbsym r state 16 c
+ 0360                   .dbend
+ 0360                   .dbfunc e Direction_Valve _Direction_Valve fV
+ 0360           ;          state -> R20
+                        .even
+ 0360           _Direction_Valve::
+ 0360 4A93              st -y,R20
+ 0362 402F              mov R20,R16
+ 0364                   .dbline -1
+ 0364                   .dbline 324
+ 0364           ; }
+ 0364           ; 
+ 0364           ; void Direction_Valve(uchar state)//换向阀
+ 0364           ; {
+ 0364                   .dbline 325
+ 0364           ;     if(state==1)
+ 0364 4130              cpi R20,1
+ 0366 49F4              brne L51
+ 0368           X29:
+ 0368                   .dbline 326
+ 0368           ;       {
+ 0368                   .dbline 328
+ 0368           ;           //气流通向乐器
+ 0368           ;               PORTA|=BIT(1);//PA1=1
+ 0368 D99A              sbi 0x1b,1
+ 036A                   .dbline 329
+ 036A           ;               UART1_Send_String("#0H",3);
+ 036A 23E0              ldi R18,3
+ 036C 00E0              ldi R16,<L53
+ 036E 10E0              ldi R17,>L53
+ 0370 E4DE              xcall _UART1_Send_String
+ 0372                   .dbline 330
+ 0372           ;               UART1_SendB(Note_end);
+ 0372 00910100          lds R16,_Note_end
+ 0376 D1DE              xcall _UART1_SendB
+ 0378                   .dbline 331
+ 0378           ;       }
+ 0378 08C0              xjmp L52
+ 037A           L51:
+ 037A                   .dbline 333
+ 037A           ;       else
+ 037A           ;       {
+ 037A                   .dbline 335
+ 037A           ;           //气流排入大气
+ 037A           ;               PORTA&=(~BIT(1));//PA1=0
+ 037A D998              cbi 0x1b,1
+ 037C                   .dbline 336
+ 037C           ;               UART1_Send_String("#0L",3);
+ 037C 23E0              ldi R18,3
+ 037E 00E0              ldi R16,<L54
+ 0380 10E0              ldi R17,>L54
+ 0382 DBDE              xcall _UART1_Send_String
+ 0384                   .dbline 337
+ 0384           ;               UART1_SendB(Note_end);
+ 0384 00910100          lds R16,_Note_end
+ 0388 C8DE              xcall _UART1_SendB
+ 038A                   .dbline 338
+ 038A           ;       }
+ 038A           L52:
+ 038A                   .dbline -2
+ 038A           L50:
+ 038A                   .dbline 0 ; func end
+ 038A 4991              ld R20,y+
+ 038C 0895              ret
+ 038E                   .dbsym r state 20 c
+ 038E                   .dbend
+ 038E                   .dbfunc e main _main fV
+                        .even
+ 038E           _main::
+ 038E                   .dbline -1
+ 038E                   .dbline 344
+ 038E           ; }
+ 038E           ; 
+ 038E           ; 
+ 038E           ; //---------------------------【主函数】↓-----------------------------------------------------------
+ 038E           ; void main(void)
+ 038E           ; {
+ 038E                   .dbline 346
+ 038E           ;     //初始化
+ 038E           ;       uart0_init(9600);//speaking module
+ 038E 00E8              ldi R16,9600
+ 0390 15E2              ldi R17,37
+ 0392 50DE              xcall _uart0_init
+ 0394                   .dbline 347
+ 0394           ;       uart1_init(9600);//motor board
+ 0394 00E8              ldi R16,9600
+ 0396 15E2              ldi R17,37
+ 0398 8BDE              xcall _uart1_init
+ 039A 3CC0              xjmp L57
+ 039C           L56:
+ 039C                   .dbline 351
+ 039C           ;       
+ 039C           ;       //大循环
+ 039C           ;       while(1)
+ 039C           ;       {           
+ 039C                   .dbline 352
+ 039C           ;           if(uart0_received_flag==1)
+ 039C 80910000          lds R24,_uart0_received_flag
+ 03A0 8130              cpi R24,1
+ 03A2 09F0              breq X36
+ 03A4 37C0              xjmp L59
+ 03A6           X36:
+ 03A6           X30:
+ 03A6                   .dbline 353
+ 03A6           ;               {       
+ 03A6                   .dbline 354
+ 03A6           ;                       switch(uart0_received_byte)
+ 03A6 40910000          lds R20,_uart0_received_byte
+ 03AA 5527              clr R21
+ 03AC 4130              cpi R20,1
+ 03AE E0E0              ldi R30,0
+ 03B0 5E07              cpc R21,R30
+ 03B2 69F0              breq L64
+ 03B4           X31:
+ 03B4 4230              cpi R20,2
+ 03B6 E0E0              ldi R30,0
+ 03B8 5E07              cpc R21,R30
+ 03BA 81F0              breq L65
+ 03BC           X32:
+ 03BC 4330              cpi R20,3
+ 03BE E0E0              ldi R30,0
+ 03C0 5E07              cpc R21,R30
+ 03C2 99F0              breq L66
+ 03C4           X33:
+ 03C4 4430              cpi R20,4
+ 03C6 E0E0              ldi R30,0
+ 03C8 5E07              cpc R21,R30
+ 03CA B9F0              breq L67
+ 03CC           X34:
+ 03CC 1DC0              xjmp L61
+ 03CE           L64:
+ 03CE                   .dbline 357
+ 03CE           ;                       {
+ 03CE           ;                   case 0x01://康定情歌
+ 03CE           ;                               {
+ 03CE                   .dbline 358
+ 03CE           ;                           delay(3000);
+ 03CE 08EB              ldi R16,3000
+ 03D0 1BE0              ldi R17,11
+ 03D2 16DE              xcall _delay
+ 03D4                   .dbline 359
+ 03D4           ;                                       Play_Music(KangDingQingGe);
+ 03D4 00E0              ldi R16,<_KangDingQingGe
+ 03D6 10E0              ldi R17,>_KangDingQingGe
+ 03D8 C8DE              xcall _Play_Music
+ 03DA                   .dbline 360
+ 03DA           ;                                       break;
+ 03DA 16C0              xjmp L62
+ 03DC           L65:
+ 03DC                   .dbline 363
+ 03DC           ;                               }
+ 03DC           ;                           case 0x02://月光下的凤尾竹
+ 03DC           ;                       {
+ 03DC                   .dbline 364
+ 03DC           ;                           delay(3500);
+ 03DC 0CEA              ldi R16,3500
+ 03DE 1DE0              ldi R17,13
+ 03E0 0FDE              xcall _delay
+ 03E2                   .dbline 365
+ 03E2           ;                                       Play_Music(YueGuangXiaDeFengWeiZhu);
+ 03E2 00E0              ldi R16,<_YueGuangXiaDeFengWeiZhu
+ 03E4 10E0              ldi R17,>_YueGuangXiaDeFengWeiZhu
+ 03E6 C1DE              xcall _Play_Music
+ 03E8                   .dbline 366
+ 03E8           ;                                       break;
+ 03E8 0FC0              xjmp L62
+ 03EA           L66:
+ 03EA                   .dbline 369
+ 03EA           ;                           }
+ 03EA           ;                               case 0x03://傣族民歌
+ 03EA           ;                       {
+ 03EA                   .dbline 370
+ 03EA           ;                               UART1_Send_String(Note_test3,14);
+ 03EA 2EE0              ldi R18,14
+ 03EC 00E0              ldi R16,<_Note_test3
+ 03EE 10E0              ldi R17,>_Note_test3
+ 03F0 A4DE              xcall _UART1_Send_String
+ 03F2                   .dbline 371
+ 03F2           ;                               delay(50);
+ 03F2 02E3              ldi R16,50
+ 03F4 10E0              ldi R17,0
+ 03F6 04DE              xcall _delay
+ 03F8                   .dbline 372
+ 03F8           ;                                       break;
+ 03F8 07C0              xjmp L62
+ 03FA           L67:
+ 03FA                   .dbline 375
+ 03FA           ;                           }
+ 03FA           ;                               case 0x04://太阳
+ 03FA           ;                       {
+ 03FA                   .dbline 376
+ 03FA           ;                               UART1_Send_String(Note_test4,14);
+ 03FA 2EE0              ldi R18,14
+ 03FC 00E0              ldi R16,<_Note_test4
+ 03FE 10E0              ldi R17,>_Note_test4
+ 0400 9CDE              xcall _UART1_Send_String
+ 0402                   .dbline 377
+ 0402           ;                               delay(50);
+ 0402 02E3              ldi R16,50
+ 0404 10E0              ldi R17,0
+ 0406 FCDD              xcall _delay
+ 0408                   .dbline 378
+ 0408           ;                                       break;
+ 0408           L61:
+ 0408           L62:
+ 0408                   .dbline 381
+ 0408           ;                           }
+ 0408           ;                   }
+ 0408           ;                       uart0_received_byte=0;
+ 0408 2224              clr R2
+ 040A 20920000          sts _uart0_received_byte,R2
+ 040E                   .dbline 382
+ 040E           ;                       uart0_received_flag=0;
+ 040E 20920000          sts _uart0_received_flag,R2
+ 0412                   .dbline 383
+ 0412           ;                       UCSR0B|=BIT(RXCIE0);//使能RXCIE0，其余位保持不变
+ 0412 579A              sbi 0xa,7
+ 0414                   .dbline 384
+ 0414           ;         }
+ 0414           L59:
+ 0414                   .dbline 385
+ 0414           ;       }
+ 0414           L57:
+ 0414                   .dbline 350
+ 0414 C3CF              xjmp L56
+ 0416           X35:
+ 0416                   .dbline -2
+ 0416           L55:
+ 0416                   .dbline 0 ; func end
+ 0416 0895              ret
+ 0418                   .dbend
+                        .area bss(ram, con, rel)
+ 0000                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0000           _uart0_received_byte::
+ 0000                   .blkb 1
+ 0001                   .dbsym e uart0_received_byte _uart0_received_byte c
+                        .area data(ram, con, rel)
+ 0944                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0944           L54:
+ 0944                   .blkb 4
+                        .area idata
+ 0944 23304C00          .byte 35,48,'L,0
+                        .area data(ram, con, rel)
+ 0948                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+ 0948           L53:
+ 0948                   .blkb 4
+                        .area idata
+ 0948 23304800          .byte 35,48,'H,0
+                        .area data(ram, con, rel)
+ 094C                   .dbfile K:\专业资料\项目\爱尔兰哨笛机器人\控制程序\Robot_Program.c
+                        .area lit(rom, con, rel)
+ 0000           L32:
+ 0000 0000F041          .word 0x0,0x41f0
+ 0004           L31:
+ 0004 00002544          .word 0x0,0x4425
+ 0008           ; }

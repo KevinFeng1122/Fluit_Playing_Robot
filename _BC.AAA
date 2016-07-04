@@ -1,0 +1,1 @@
+ROBOT_PROGRAM -LC:/iccv7avr/lib -g -ucrtatmega.o -fihx_coff -e:0x20000 -bfunc_lit:0x8c.0x20000 -dram_end:0x10ff -bdata:0x100.0x10ff -dhwstk_size:30 -beeprom:0.4096 -S2 Robot_Program.o -lcatm128 
